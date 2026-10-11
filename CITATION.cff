@@ -3,6 +3,8 @@ message: "If you use this software, please cite this release using the metadata 
 type: software
 title: "Staged Binary-Local Diffusion Attention: Effective Few-Step Diffusion Along the Time Axis"
 version: "0.1.1"
+doi: "10.5281/zenodo.23292158"
+date-released: "2026-10-11"
 authors:
   - name: "HaoyangMa"
     email: "haoyang@haoyangma.com"

@@ -2,6 +2,8 @@
 
 Code, data, and experiment records for **Staged Binary-Local Diffusion Attention: Effective Few-Step Diffusion Along the Time Axis**.
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23292158.svg)](https://doi.org/10.5281/zenodo.23292158)
+
 **Author:** HaoyangMa · [haoyang@haoyangma.com](mailto:haoyang@haoyangma.com)
 
 [English paper (PDF)](paper_en.pdf) · [Manuscript source](BinaryDiffusionAttention/paper_en.md) · [Experiment protocol](BinaryDiffusionAttention/experiment.md) · [Experiment guide](BinaryDiffusionAttention/README.md)
@@ -132,7 +134,14 @@ Figure generation reads the saved results and updates `figures/`. PDF export rea
 
 ## Citation and archival
 
-[CITATION.cff](CITATION.cff) supplies GitHub citation metadata; [.zenodo.json](.zenodo.json) supplies the author, title and license for Zenodo archiving. The current release is `v0.1.1`; see its [release notes](docs/releases/v0.1.1.md). The first archival release was `v0.1.0`. The linked Zenodo integration assigns a DOI after it processes the published GitHub release. No DOI is asserted before that record exists.
+[CITATION.cff](CITATION.cff) supplies GitHub citation metadata; [.zenodo.json](.zenodo.json) supplies the author, title and license for Zenodo archiving. The current release is `v0.1.1`; see its [release notes](docs/releases/v0.1.1.md). The first archival release was `v0.1.0`. The `v0.1.1` release is archived on [Zenodo](https://zenodo.org/records/23292158).
+
+- Version DOI (use to cite these exact artifacts): [10.5281/zenodo.23292158](https://doi.org/10.5281/zenodo.23292158).
+- All-versions DOI: [10.5281/zenodo.23292157](https://doi.org/10.5281/zenodo.23292157).
+
+Suggested citation: HaoyangMa. (2026). *Staged Binary-Local Diffusion Attention: Effective Few-Step Diffusion Along the Time Axis* (Version 0.1.1) [Software]. Zenodo. https://doi.org/10.5281/zenodo.23292158
+
+This DOI identifies the software release, which includes the English manuscript; it is not a separate publication DOI for the paper.
 
 ## Artifacts and license
 

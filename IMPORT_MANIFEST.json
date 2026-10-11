@@ -618,8 +618,8 @@
     },
     {
       "path": "CITATION.cff",
-      "bytes": 731,
-      "sha256": "27d8b5453550865dadbc1f094fd0cb92fb99900a169ecd23e1fef2e8a9be55c9",
+      "bytes": 790,
+      "sha256": "359403aa75312ee6b98a79d7726c29061ffc12411767b570d77c5536e4bc7232",
       "imported_sha256": "e58042d1b1bbfbac9916a60ec8b5b954c2fdeb6ef3255e89412e8e44f741f5c8"
     },
     {
@@ -629,8 +629,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 8383,
-      "sha256": "91cad744c1ca2281620a5d75a7146611f4671bba2e3688902d95105d0a27665b",
+      "bytes": 8986,
+      "sha256": "8244c4098eee5d4689dc10947b038fb4ba6299b33677b6f40cc96ef4387d3261",
       "imported_sha256": "6b424903192302572d30e46d86a47027c19bfda1ea7ce84bc3add8a119cee80f"
     },
     {
