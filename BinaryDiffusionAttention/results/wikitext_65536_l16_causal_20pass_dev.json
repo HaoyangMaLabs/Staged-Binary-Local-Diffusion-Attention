@@ -1,0 +1,233 @@
+{
+  "status": "ok",
+  "created_utc": "2026-10-08T11:15:29.080390+00:00",
+  "mode": "causal",
+  "hardware": "NVIDIA GeForce RTX 4090",
+  "torch": "2.14.0+cu130",
+  "cuda": "13.0",
+  "dtype": "bf16",
+  "batch_size": 1,
+  "seq_len": 65536,
+  "passes": 20,
+  "complete_windows": 166,
+  "dropped_train_tokens": 39915,
+  "dev_source": "wiki.valid.raw",
+  "dev_complete_windows": 17,
+  "dropped_valid_tokens": 30635,
+  "vocab_size": 1014,
+  "model": {
+    "dim": 64,
+    "layers": 16,
+    "heads": 4,
+    "ff_hidden": 128
+  },
+  "optimizer": {
+    "name": "AdamW",
+    "lr": 0.0003
+  },
+  "peak_allocated_gib": 5.0988569259643555,
+  "total_seconds": 1548.724607490003,
+  "tokens_per_second_all_passes": 140489.48337731147,
+  "pass_records": [
+    {
+      "pass": 1,
+      "mean_loss": 4.40620367067406,
+      "windows": 166,
+      "tokens": 10878976,
+      "seconds": 77.9254608899355,
+      "tokens_per_second": 139607.46430958973,
+      "dev_loss": 3.0923381833469166,
+      "dev_windows": 17
+    },
+    {
+      "pass": 2,
+      "mean_loss": 2.8167375182530967,
+      "windows": 166,
+      "tokens": 10878976,
+      "seconds": 77.36355467420071,
+      "tokens_per_second": 140621.4598826847,
+      "dev_loss": 2.6608458827523624,
+      "dev_windows": 17
+    },
+    {
+      "pass": 3,
+      "mean_loss": 2.5986855288585984,
+      "windows": 166,
+      "tokens": 10878976,
+      "seconds": 77.36499018408358,
+      "tokens_per_second": 140618.85064697065,
+      "dev_loss": 2.5598840152516082,
+      "dev_windows": 17
+    },
+    {
+      "pass": 4,
+      "mean_loss": 2.5372866147972015,
+      "windows": 166,
+      "tokens": 10878976,
+      "seconds": 77.43335231207311,
+      "tokens_per_second": 140494.70512596922,
+      "dev_loss": 2.524457468706019,
+      "dev_windows": 17
+    },
+    {
+      "pass": 5,
+      "mean_loss": 2.510232574968453,
+      "windows": 166,
+      "tokens": 10878976,
+      "seconds": 77.34042207151651,
+      "tokens_per_second": 140663.51991123395,
+      "dev_loss": 2.5047917085535385,
+      "dev_windows": 17
+    },
+    {
+      "pass": 6,
+      "mean_loss": 2.494866540633052,
+      "windows": 166,
+      "tokens": 10878976,
+      "seconds": 77.3451771568507,
+      "tokens_per_second": 140654.87209290612,
+      "dev_loss": 2.4895896631128647,
+      "dev_windows": 17
+    },
+    {
+      "pass": 7,
+      "mean_loss": 2.4846432740429796,
+      "windows": 166,
+      "tokens": 10878976,
+      "seconds": 77.36053196713328,
+      "tokens_per_second": 140626.95438317236,
+      "dev_loss": 2.4800121363471535,
+      "dev_windows": 17
+    },
+    {
+      "pass": 8,
+      "mean_loss": 2.476105695747467,
+      "windows": 166,
+      "tokens": 10878976,
+      "seconds": 77.4226932991296,
+      "tokens_per_second": 140514.047450766,
+      "dev_loss": 2.4708618977490593,
+      "dev_windows": 17
+    },
+    {
+      "pass": 9,
+      "mean_loss": 2.4639782991754005,
+      "windows": 166,
+      "tokens": 10878976,
+      "seconds": 77.58981537912041,
+      "tokens_per_second": 140211.39175087606,
+      "dev_loss": 2.4563946583691765,
+      "dev_windows": 17
+    },
+    {
+      "pass": 10,
+      "mean_loss": 2.448532183486295,
+      "windows": 166,
+      "tokens": 10878976,
+      "seconds": 77.59818049240857,
+      "tokens_per_second": 140196.27690966657,
+      "dev_loss": 2.4470107134650734,
+      "dev_windows": 17
+    },
+    {
+      "pass": 11,
+      "mean_loss": 2.439220939774111,
+      "windows": 166,
+      "tokens": 10878976,
+      "seconds": 77.55910674016923,
+      "tokens_per_second": 140266.9068436497,
+      "dev_loss": 2.4368198478923127,
+      "dev_windows": 17
+    },
+    {
+      "pass": 12,
+      "mean_loss": 2.4316125648567475,
+      "windows": 166,
+      "tokens": 10878976,
+      "seconds": 77.36229025386274,
+      "tokens_per_second": 140623.7582199398,
+      "dev_loss": 2.430380849277272,
+      "dev_windows": 17
+    },
+    {
+      "pass": 13,
+      "mean_loss": 2.4237226879740335,
+      "windows": 166,
+      "tokens": 10878976,
+      "seconds": 77.34212525561452,
+      "tokens_per_second": 140660.42229955737,
+      "dev_loss": 2.420315658344942,
+      "dev_windows": 17
+    },
+    {
+      "pass": 14,
+      "mean_loss": 2.4155365199927825,
+      "windows": 166,
+      "tokens": 10878976,
+      "seconds": 77.3490985929966,
+      "tokens_per_second": 140647.74118757492,
+      "dev_loss": 2.4109586687649,
+      "dev_windows": 17
+    },
+    {
+      "pass": 15,
+      "mean_loss": 2.406584594623152,
+      "windows": 166,
+      "tokens": 10878976,
+      "seconds": 77.3450095448643,
+      "tokens_per_second": 140655.17690174445,
+      "dev_loss": 2.4039234413820156,
+      "dev_windows": 17
+    },
+    {
+      "pass": 16,
+      "mean_loss": 2.397568877921047,
+      "windows": 166,
+      "tokens": 10878976,
+      "seconds": 77.338293293491,
+      "tokens_per_second": 140667.39175010478,
+      "dev_loss": 2.3957430474898396,
+      "dev_windows": 17
+    },
+    {
+      "pass": 17,
+      "mean_loss": 2.386555877076574,
+      "windows": 166,
+      "tokens": 10878976,
+      "seconds": 77.35542172659189,
+      "tokens_per_second": 140636.24445680215,
+      "dev_loss": 2.382557181751027,
+      "dev_windows": 17
+    },
+    {
+      "pass": 18,
+      "mean_loss": 2.375454341072634,
+      "windows": 166,
+      "tokens": 10878976,
+      "seconds": 77.34450668934733,
+      "tokens_per_second": 140656.09137175302,
+      "dev_loss": 2.3652564637801228,
+      "dev_windows": 17
+    },
+    {
+      "pass": 19,
+      "mean_loss": 2.3587547555027237,
+      "windows": 166,
+      "tokens": 10878976,
+      "seconds": 77.36653333995491,
+      "tokens_per_second": 140616.0458579278,
+      "dev_loss": 2.3574309910044953,
+      "dev_windows": 17
+    },
+    {
+      "pass": 20,
+      "mean_loss": 2.3188289260289756,
+      "windows": 166,
+      "tokens": 10878976,
+      "seconds": 77.61804362665862,
+      "tokens_per_second": 140160.39945979154,
+      "dev_loss": 2.295624817118925,
+      "dev_windows": 17
+    }
+  ]
+}

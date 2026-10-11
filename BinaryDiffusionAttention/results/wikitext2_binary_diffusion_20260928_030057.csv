@@ -1,0 +1,2 @@
+mode,backend,topology,seed,parameters,vocab_size,dim,layers,heads,seq_len,batch_size,steps,final_train_loss,mean_last_10_loss,val_loss,val_ppl,tokens_per_second_after_warmup,elapsed_seconds,peak_memory_mb,source_edges_per_query,reachable_sources
+binary_diffusion,left_v2,binary,1,1205760,1014,96,10,4,512,8,300,2.0558738708496094,2.1109451055526733,2.112369954586029,8.267812728881836,64949.33502529176,19.785302713993588,512,2.0,512

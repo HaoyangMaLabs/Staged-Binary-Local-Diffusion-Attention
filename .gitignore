@@ -1,0 +1,29 @@
+# Python environments and caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# Local editor, OS and temporary files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*.tmp
+.env
+.env.*
+!.env.example
+
+# Preserve the experiment logs shipped with this paper
+*.log
+!BinaryDiffusionAttention/results/**/*.log

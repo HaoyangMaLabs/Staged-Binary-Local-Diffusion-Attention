@@ -1,0 +1,54 @@
+{
+  "status": "ok",
+  "created_utc": "2026-10-08T10:35:53.218700+00:00",
+  "mode": "sbda",
+  "hardware": "NVIDIA GeForce RTX 4090",
+  "torch": "2.14.0+cu130",
+  "cuda": "13.0",
+  "dtype": "bf16",
+  "batch_size": 1,
+  "seq_len": 1048576,
+  "passes": 3,
+  "complete_windows": 10,
+  "dropped_train_tokens": 433131,
+  "vocab_size": 1014,
+  "model": {
+    "dim": 64,
+    "layers": 4,
+    "heads": 4,
+    "ff_hidden": 128
+  },
+  "optimizer": {
+    "name": "AdamW",
+    "lr": 0.0003
+  },
+  "peak_allocated_gib": 29.546223163604736,
+  "total_seconds": 12.340080112218857,
+  "tokens_per_second_all_passes": 2549195.768093251,
+  "pass_records": [
+    {
+      "pass": 1,
+      "mean_loss": 6.582253122329712,
+      "windows": 10,
+      "tokens": 10485760,
+      "seconds": 6.376755180768669,
+      "tokens_per_second": 1644372.365372199
+    },
+    {
+      "pass": 2,
+      "mean_loss": 6.171510028839111,
+      "windows": 10,
+      "tokens": 10485760,
+      "seconds": 2.9787664711475372,
+      "tokens_per_second": 3520168.533372969
+    },
+    {
+      "pass": 3,
+      "mean_loss": 5.829353618621826,
+      "windows": 10,
+      "tokens": 10485760,
+      "seconds": 2.984558460302651,
+      "tokens_per_second": 3513337.1114924266
+    }
+  ]
+}

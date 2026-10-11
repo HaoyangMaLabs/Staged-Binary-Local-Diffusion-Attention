@@ -1,0 +1,304 @@
+{
+  "created_utc": "2026-10-08T10:10:19.712909+00:00",
+  "hardware": "NVIDIA GeForce RTX 4090, 49140, 610.43.03",
+  "benchmark": "forward_hidden only; no backward, optimizer, or vocab head",
+  "dtype": "bf16",
+  "batch_size": 1,
+  "model": {
+    "dim": 96,
+    "layers": 8,
+    "heads": 4,
+    "ff_hidden": 256,
+    "vocab_size": 6400
+  },
+  "results": [
+    {
+      "status": "ok",
+      "mode": "causal",
+      "length": 4096,
+      "iters": 3,
+      "warmup": 2,
+      "seconds_per_forward": 0.009614529398580393,
+      "tokens_per_second": 426021.89147237764,
+      "peak_allocated_gib": 0.028000354766845703,
+      "output_shape": [
+        1,
+        4096,
+        96
+      ],
+      "wall_seconds_including_startup": 3.126499162055552
+    },
+    {
+      "status": "ok",
+      "mode": "causal",
+      "length": 8192,
+      "iters": 3,
+      "warmup": 2,
+      "seconds_per_forward": 0.009646665304899216,
+      "tokens_per_second": 849205.3721237286,
+      "peak_allocated_gib": 0.0434117317199707,
+      "output_shape": [
+        1,
+        8192,
+        96
+      ],
+      "wall_seconds_including_startup": 3.0501436041668057
+    },
+    {
+      "status": "ok",
+      "mode": "causal",
+      "length": 16384,
+      "iters": 3,
+      "warmup": 2,
+      "seconds_per_forward": 0.010386920844515165,
+      "tokens_per_second": 1577368.331313664,
+      "peak_allocated_gib": 0.0693211555480957,
+      "output_shape": [
+        1,
+        16384,
+        96
+      ],
+      "wall_seconds_including_startup": 3.198651375249028
+    },
+    {
+      "status": "ok",
+      "mode": "causal",
+      "length": 32768,
+      "iters": 3,
+      "warmup": 2,
+      "seconds_per_forward": 0.024304888832072418,
+      "tokens_per_second": 1348206.125376709,
+      "peak_allocated_gib": 0.1251072883605957,
+      "output_shape": [
+        1,
+        32768,
+        96
+      ],
+      "wall_seconds_including_startup": 3.1414076136425138
+    },
+    {
+      "status": "ok",
+      "mode": "causal",
+      "length": 65536,
+      "iters": 3,
+      "warmup": 2,
+      "seconds_per_forward": 0.0709231145059069,
+      "tokens_per_second": 924042.8942886,
+      "peak_allocated_gib": 0.2366795539855957,
+      "output_shape": [
+        1,
+        65536,
+        96
+      ],
+      "wall_seconds_including_startup": 3.4064273936674
+    },
+    {
+      "status": "ok",
+      "mode": "causal",
+      "length": 131072,
+      "iters": 3,
+      "warmup": 2,
+      "seconds_per_forward": 0.254415995751818,
+      "tokens_per_second": 515187.73264500365,
+      "peak_allocated_gib": 0.4598240852355957,
+      "output_shape": [
+        1,
+        131072,
+        96
+      ],
+      "wall_seconds_including_startup": 4.212648610584438
+    },
+    {
+      "status": "ok",
+      "mode": "causal",
+      "length": 262144,
+      "iters": 3,
+      "warmup": 2,
+      "seconds_per_forward": 0.9851073861743013,
+      "tokens_per_second": 266107.02922251483,
+      "peak_allocated_gib": 0.9061131477355957,
+      "output_shape": [
+        1,
+        262144,
+        96
+      ],
+      "wall_seconds_including_startup": 7.837201964110136
+    },
+    {
+      "status": "ok",
+      "mode": "causal",
+      "length": 524288,
+      "iters": 3,
+      "warmup": 2,
+      "seconds_per_forward": 4.017308390699327,
+      "tokens_per_second": 130507.28224246005,
+      "peak_allocated_gib": 1.7986912727355957,
+      "output_shape": [
+        1,
+        524288,
+        96
+      ],
+      "wall_seconds_including_startup": 22.864716190844774
+    },
+    {
+      "status": "ok",
+      "mode": "causal",
+      "length": 1048576,
+      "iters": 3,
+      "warmup": 2,
+      "seconds_per_forward": 16.325190482661128,
+      "tokens_per_second": 64230.55223237274,
+      "peak_allocated_gib": 3.5838475227355957,
+      "output_shape": [
+        1,
+        1048576,
+        96
+      ],
+      "wall_seconds_including_startup": 84.50397009123117
+    },
+    {
+      "status": "ok",
+      "mode": "sbda",
+      "length": 4096,
+      "iters": 3,
+      "warmup": 2,
+      "seconds_per_forward": 0.010128323920071125,
+      "tokens_per_second": 404410.4466172362,
+      "peak_allocated_gib": 0.028004169464111328,
+      "output_shape": [
+        1,
+        4096,
+        96
+      ],
+      "wall_seconds_including_startup": 3.6670364448800683
+    },
+    {
+      "status": "ok",
+      "mode": "sbda",
+      "length": 8192,
+      "iters": 3,
+      "warmup": 2,
+      "seconds_per_forward": 0.010536332304279009,
+      "tokens_per_second": 777500.1550276722,
+      "peak_allocated_gib": 0.04341554641723633,
+      "output_shape": [
+        1,
+        8192,
+        96
+      ],
+      "wall_seconds_including_startup": 3.450987777672708
+    },
+    {
+      "status": "ok",
+      "mode": "sbda",
+      "length": 16384,
+      "iters": 3,
+      "warmup": 2,
+      "seconds_per_forward": 0.01033145779122909,
+      "tokens_per_second": 1585836.2228328735,
+      "peak_allocated_gib": 0.06932497024536133,
+      "output_shape": [
+        1,
+        16384,
+        96
+      ],
+      "wall_seconds_including_startup": 3.4759823083877563
+    },
+    {
+      "status": "ok",
+      "mode": "sbda",
+      "length": 32768,
+      "iters": 3,
+      "warmup": 2,
+      "seconds_per_forward": 0.010886791783074537,
+      "tokens_per_second": 3009885.800419524,
+      "peak_allocated_gib": 0.12511110305786133,
+      "output_shape": [
+        1,
+        32768,
+        96
+      ],
+      "wall_seconds_including_startup": 3.5972623927518725
+    },
+    {
+      "status": "ok",
+      "mode": "sbda",
+      "length": 65536,
+      "iters": 3,
+      "warmup": 2,
+      "seconds_per_forward": 0.01370987327148517,
+      "tokens_per_second": 4780204.65267952,
+      "peak_allocated_gib": 0.23668336868286133,
+      "output_shape": [
+        1,
+        65536,
+        96
+      ],
+      "wall_seconds_including_startup": 3.609656293876469
+    },
+    {
+      "status": "ok",
+      "mode": "sbda",
+      "length": 131072,
+      "iters": 3,
+      "warmup": 2,
+      "seconds_per_forward": 0.029175774194300175,
+      "tokens_per_second": 4492494.325158522,
+      "peak_allocated_gib": 0.45982789993286133,
+      "output_shape": [
+        1,
+        131072,
+        96
+      ],
+      "wall_seconds_including_startup": 3.7096861954778433
+    },
+    {
+      "status": "ok",
+      "mode": "sbda",
+      "length": 262144,
+      "iters": 3,
+      "warmup": 2,
+      "seconds_per_forward": 0.06988666548083226,
+      "tokens_per_second": 3750987.3764387565,
+      "peak_allocated_gib": 0.9061169624328613,
+      "output_shape": [
+        1,
+        262144,
+        96
+      ],
+      "wall_seconds_including_startup": 3.731447339989245
+    },
+    {
+      "status": "ok",
+      "mode": "sbda",
+      "length": 524288,
+      "iters": 3,
+      "warmup": 2,
+      "seconds_per_forward": 0.14398592865715423,
+      "tokens_per_second": 3641244.7027958217,
+      "peak_allocated_gib": 1.7986950874328613,
+      "output_shape": [
+        1,
+        524288,
+        96
+      ],
+      "wall_seconds_including_startup": 4.062387029640377
+    },
+    {
+      "status": "ok",
+      "mode": "sbda",
+      "length": 1048576,
+      "iters": 3,
+      "warmup": 2,
+      "seconds_per_forward": 0.2937532501916091,
+      "tokens_per_second": 3569580.9299677056,
+      "peak_allocated_gib": 3.5838513374328613,
+      "output_shape": [
+        1,
+        1048576,
+        96
+      ],
+      "wall_seconds_including_startup": 5.138947303406894
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+[
+  {
+    "mode": "binary_diffusion",
+    "backend": "left_v2",
+    "topology": "binary",
+    "seed": 1,
+    "parameters": 984096,
+    "vocab_size": 1014,
+    "dim": 96,
+    "layers": 8,
+    "heads": 4,
+    "seq_len": 512,
+    "batch_size": 8,
+    "steps": 300,
+    "final_train_loss": 2.0493459701538086,
+    "mean_last_10_loss": 2.111230564117432,
+    "val_loss": 2.107203245162964,
+    "val_ppl": 8.225205421447754,
+    "tokens_per_second_after_warmup": 80906.2069467501,
+    "elapsed_seconds": 16.00829275799333,
+    "peak_memory_mb": 429,
+    "source_edges_per_query": 2.0,
+    "reachable_sources": 256
+  }
+]
