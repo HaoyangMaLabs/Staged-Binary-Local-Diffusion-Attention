@@ -129,6 +129,10 @@ uv run --with pypandoc-binary --with typst --with pymupdf \
 
 Figure generation reads the saved results and updates `figures/`. PDF export reads `paper_en.md`, writes `paper_en.pdf`, and refreshes selected page previews. The PDF includes the author name and email shown above.
 
+## Citation and archival
+
+[CITATION.cff](CITATION.cff) supplies GitHub citation metadata; [.zenodo.json](.zenodo.json) supplies the author, title and license for Zenodo archiving. The first archival release is `v0.1.0`; see its [release notes](docs/releases/v0.1.0.md). The linked Zenodo integration assigns a DOI after it processes the published GitHub release. No DOI is asserted before that record exists.
+
 ## Artifacts and license
 
 Paper data, result tables and the five recorded experiment logs are tracked in Git. Python caches, virtual environments, build artifacts, local editor files and temporary logs outside the experiment results directory are ignored. [IMPORT_MANIFEST.json](IMPORT_MANIFEST.json) records file sizes and SHA-256 checksums, including original checksums for modified imported files.

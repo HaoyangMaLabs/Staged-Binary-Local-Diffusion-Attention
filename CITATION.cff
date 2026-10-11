@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite this release using the metadata below."
+type: software
+title: "Staged Binary-Local Diffusion Attention: Effective Few-Step Diffusion Along the Time Axis"
+version: "0.1.0"
+authors:
+  - name: "HaoyangMa"
+    email: "haoyang@haoyangma.com"
+repository-code: "https://github.com/HaoyangMaLabs/Staged-Binary-Local-Diffusion-Attention"
+url: "https://github.com/HaoyangMaLabs/Staged-Binary-Local-Diffusion-Attention"
+license: MIT
+abstract: "Research software and recorded experiments for learned causal propagation with at most four attention sources per position per layer."
+keywords:
+  - sparse attention
+  - language modeling
+  - temporal diffusion
+  - reproducibility

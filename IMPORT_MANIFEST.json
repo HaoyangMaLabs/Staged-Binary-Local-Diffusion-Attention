@@ -2,6 +2,69 @@
   "paper": "BinaryDiffusionAttention/paper_en.pdf",
   "files": [
     {
+      "path": ".github/workflows/release.yml",
+      "bytes": 879,
+      "sha256": "39c27f53a8bd71140973ab8f9bbcb86fbf7bcf6b97162b023be8d929de7f71ef"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 379,
+      "sha256": "645df3a7e5cbe9dd9161f5b09925a733cd3488f7f74a6fb161c9bade23e8019a",
+      "imported_sha256": "4cb18d750ab3d36453c88d0f1b380636848f501dadf444d3e442f2b7254ffe5f"
+    },
+    {
+      "path": ".zenodo.json",
+      "bytes": 983,
+      "sha256": "70fefac62a2bcaea56c042e95768c3b02d15d8e4eff042ca710617d403a56516"
+    },
+    {
+      "path": "BiAttn/README.md",
+      "bytes": 1638,
+      "sha256": "3e1ab0e4c4c15b3170a89661dd342493c13deb2f07425703778a3195bc83a952",
+      "imported_sha256": "3629f2bfcf6b55595dce42f22fb097057e84b2372adb6b39d0aabacd2e570c95"
+    },
+    {
+      "path": "BiAttn/__init__.py",
+      "bytes": 561,
+      "sha256": "b2c941f20788888983593b9b3476819f79b3cb2d0d21d29efe3b54be6d2fd89c",
+      "imported_sha256": "4e6bfc0d83017a720e7fa63a84fb1dddfeca49853ab45a4310f556071dd0a2ca"
+    },
+    {
+      "path": "BiAttn/attention_common.py",
+      "bytes": 2562,
+      "sha256": "4212e5f6c55ad562028515b5eeb611e9e3d92151b554541a6b014ca598135f0d",
+      "imported_sha256": "1d4f6bc68ce5fd621281f820d079b984d0fc1558cf5e4e06ecd9741a8100181f"
+    },
+    {
+      "path": "BiAttn/left_v2.py",
+      "bytes": 19234,
+      "sha256": "afb5f4f9a1839d57ece6aba70b1fe25ecc21ee01d386e365fc0f6816151e1dc4",
+      "imported_sha256": "d2c07d5b26c8b03f6fa6b64ac22b7b1bd63a64080395b03dbb1a464c207d704e"
+    },
+    {
+      "path": "BiAttn/model.py",
+      "bytes": 22181,
+      "sha256": "026456b366cfd92b23274d1e261e390fcd64c779e59ef4b822f759a1d725d814",
+      "imported_sha256": "63f616807ebaf3fcca15a9e0b7a60b6716516e165b016ab7b40f119c481093d1"
+    },
+    {
+      "path": "BiAttn/sbda_triton.py",
+      "bytes": 63479,
+      "sha256": "db43154232993cb7ce154d220eaf9b0c38190608d59eedf06055b5048e09143e"
+    },
+    {
+      "path": "BiAttn/three_track.py",
+      "bytes": 61894,
+      "sha256": "a0ed43628b39ce8f50d4f764f8cda211c43fddb3ebe1f338a630ff436ac6801b",
+      "imported_sha256": "417f3a4a8534940dbdd467c473d9afe71c8f523ca2ee987c6809afbc3390b77a"
+    },
+    {
+      "path": "BiAttn/topology.py",
+      "bytes": 8592,
+      "sha256": "e01bab56a680d3476e3d1225ea48f4d610c23be72930caa51d5c7b7d03db606c",
+      "imported_sha256": "de82f91095b86254a077abe8cbaa169782ca6598b37d018d14f5822aaf6aa630"
+    },
+    {
       "path": "BinaryDiffusionAttention/NOVELTY_AUDIT.md",
       "bytes": 12431,
       "sha256": "021fe50d7656f86bcffcf1322974fe1991ccf22783803f0a1eaf23732d5f4718"
@@ -13,6 +76,11 @@
       "imported_sha256": "5dc805e686cbceb56db3455a6074458019b2039320c8e83e8c18017c43749d29"
     },
     {
+      "path": "BinaryDiffusionAttention/__init__.py",
+      "bytes": 56,
+      "sha256": "310a4c546e08d588c932e14535fd7337d5c427b9e17f5de5f696dbbdd877e185"
+    },
+    {
       "path": "BinaryDiffusionAttention/ablation_plan.md",
       "bytes": 9712,
       "sha256": "d985d007713a6fa2552829d84416b9e9d0e16ce3d7bafab85d153e01158d6170"
@@ -22,6 +90,11 @@
       "bytes": 8874,
       "sha256": "e09457d40c35e65e9187a720c31d0a6e79ea22e5c9fe07f935dee044d13edd49",
       "imported_sha256": "e4b193ce92133657d827210e952e69b71e8695b9ed3ae8cb7055f59f5f124e36"
+    },
+    {
+      "path": "BinaryDiffusionAttention/comparison.py",
+      "bytes": 633,
+      "sha256": "c04f7abb02357fe09ea6e094b5b94cdd733acf4faf9e6cb7fe9cb8e39b84495a"
     },
     {
       "path": "BinaryDiffusionAttention/data/ptb/ptb.test.txt",
@@ -72,6 +145,11 @@
       "path": "BinaryDiffusionAttention/data/wikitext-2-raw/wiki.valid.raw",
       "bytes": 1146846,
       "sha256": "4cd0f6876d07a413aa911261ff6d363c72d757d47f0fdd6015702014c89cb9c7"
+    },
+    {
+      "path": "BinaryDiffusionAttention/datasets.py",
+      "bytes": 4630,
+      "sha256": "56571b04b4e62fa43c1cea7ac480970a6d05139182f377ba219513df420c24ac"
     },
     {
       "path": "BinaryDiffusionAttention/experiment.md",
@@ -543,39 +621,25 @@
       "imported_sha256": "bd8d28295f0dab7e99a5b0c7463dfddd3e22ac1da8c2fddc937aa607af19348a"
     },
     {
-      "path": "BiAttn/README.md",
-      "bytes": 1638,
-      "sha256": "3e1ab0e4c4c15b3170a89661dd342493c13deb2f07425703778a3195bc83a952",
-      "imported_sha256": "3629f2bfcf6b55595dce42f22fb097057e84b2372adb6b39d0aabacd2e570c95"
+      "path": "CITATION.cff",
+      "bytes": 731,
+      "sha256": "e58042d1b1bbfbac9916a60ec8b5b954c2fdeb6ef3255e89412e8e44f741f5c8"
     },
     {
-      "path": "BiAttn/__init__.py",
-      "bytes": 561,
-      "sha256": "b2c941f20788888983593b9b3476819f79b3cb2d0d21d29efe3b54be6d2fd89c",
-      "imported_sha256": "4e6bfc0d83017a720e7fa63a84fb1dddfeca49853ab45a4310f556071dd0a2ca"
+      "path": "LICENSE",
+      "bytes": 1070,
+      "sha256": "6a1cde8a71d3c9e630c6e3947e251a8729284525eca0555446ff45f3b16d9818"
     },
     {
-      "path": "BiAttn/left_v2.py",
-      "bytes": 19234,
-      "sha256": "afb5f4f9a1839d57ece6aba70b1fe25ecc21ee01d386e365fc0f6816151e1dc4",
-      "imported_sha256": "d2c07d5b26c8b03f6fa6b64ac22b7b1bd63a64080395b03dbb1a464c207d704e"
+      "path": "README.md",
+      "bytes": 8309,
+      "sha256": "5061ed62b19120f6e33a68849a54cb39a18a1d7c2056dc9293ba753c74474226",
+      "imported_sha256": "6b424903192302572d30e46d86a47027c19bfda1ea7ce84bc3add8a119cee80f"
     },
     {
-      "path": "BiAttn/model.py",
-      "bytes": 22181,
-      "sha256": "026456b366cfd92b23274d1e261e390fcd64c779e59ef4b822f759a1d725d814",
-      "imported_sha256": "63f616807ebaf3fcca15a9e0b7a60b6716516e165b016ab7b40f119c481093d1"
-    },
-    {
-      "path": "BiAttn/sbda_triton.py",
-      "bytes": 63479,
-      "sha256": "db43154232993cb7ce154d220eaf9b0c38190608d59eedf06055b5048e09143e"
-    },
-    {
-      "path": "BiAttn/three_track.py",
-      "bytes": 61894,
-      "sha256": "a0ed43628b39ce8f50d4f764f8cda211c43fddb3ebe1f338a630ff436ac6801b",
-      "imported_sha256": "417f3a4a8534940dbdd467c473d9afe71c8f523ca2ee987c6809afbc3390b77a"
+      "path": "docs/releases/v0.1.0.md",
+      "bytes": 994,
+      "sha256": "b83026b720ab289eb35529bb1cdf8c8abf64d58c9e9ef024ac23f902aedf913e"
     },
     {
       "path": "pyproject.toml",
@@ -584,69 +648,9 @@
       "imported_sha256": "e9d7a7ca2a0cea6847f9f615bbb91133ec80709837fd203676ce5fa0e9c52896"
     },
     {
-      "path": "uv.lock",
-      "bytes": 37498,
-      "sha256": "0901a044a411a93e01659c12a6faf23584e95d22d0abaf3eb0d524f920966919",
-      "imported_sha256": "2b2f12401cc591048f4d264cc22a511e4d4d4d95160ae297ab77049449b40455"
-    },
-    {
-      "path": "README.md",
-      "bytes": 7899,
-      "sha256": "4182a0877984ef06305f7f56b2561afb6c620e93f44f94846fccebf11f2c7802",
-      "imported_sha256": "6b424903192302572d30e46d86a47027c19bfda1ea7ce84bc3add8a119cee80f"
-    },
-    {
-      "path": ".gitignore",
-      "bytes": 379,
-      "sha256": "645df3a7e5cbe9dd9161f5b09925a733cd3488f7f74a6fb161c9bade23e8019a",
-      "imported_sha256": "4cb18d750ab3d36453c88d0f1b380636848f501dadf444d3e442f2b7254ffe5f"
-    },
-    {
       "path": "tests/__init__.py",
       "bytes": 51,
       "sha256": "230bf4f8a0e4b6598b595c7137f6bfbda34463253a4078849ed4ecc726d1732b"
-    },
-    {
-      "path": "tests/test_model.py",
-      "bytes": 9164,
-      "sha256": "577bb2a65ce27065038180ffca30600ee5f4f039fa3836553e6d34f54ab0d232"
-    },
-    {
-      "path": "tests/test_three_track.py",
-      "bytes": 6663,
-      "sha256": "2f3ebc011fea7a82edc9bdcbf7123d08d0a16ee3dd122b92c5fa2441688416cd"
-    },
-    {
-      "path": "BiAttn/attention_common.py",
-      "bytes": 2562,
-      "sha256": "4212e5f6c55ad562028515b5eeb611e9e3d92151b554541a6b014ca598135f0d",
-      "imported_sha256": "1d4f6bc68ce5fd621281f820d079b984d0fc1558cf5e4e06ecd9741a8100181f"
-    },
-    {
-      "path": "BiAttn/topology.py",
-      "bytes": 8592,
-      "sha256": "e01bab56a680d3476e3d1225ea48f4d610c23be72930caa51d5c7b7d03db606c",
-      "imported_sha256": "de82f91095b86254a077abe8cbaa169782ca6598b37d018d14f5822aaf6aa630"
-    },
-    {
-      "path": "BinaryDiffusionAttention/__init__.py",
-      "bytes": 56,
-      "sha256": "310a4c546e08d588c932e14535fd7337d5c427b9e17f5de5f696dbbdd877e185"
-    },
-    {
-      "path": "BinaryDiffusionAttention/comparison.py",
-      "bytes": 633,
-      "sha256": "c04f7abb02357fe09ea6e094b5b94cdd733acf4faf9e6cb7fe9cb8e39b84495a"
-    },
-    {
-      "path": "BinaryDiffusionAttention/datasets.py",
-      "bytes": 4630,
-      "sha256": "56571b04b4e62fa43c1cea7ac480970a6d05139182f377ba219513df420c24ac"
-    },
-    {
-      "path": "LICENSE",
-      "bytes": 1070,
-      "sha256": "6a1cde8a71d3c9e630c6e3947e251a8729284525eca0555446ff45f3b16d9818"
     },
     {
       "path": "tests/test_datasets.py",
@@ -659,9 +663,25 @@
       "sha256": "16cb267cda26d1451b74956018b052db050d7165ac0f0fa6fbf3b9c428795653"
     },
     {
+      "path": "tests/test_model.py",
+      "bytes": 9164,
+      "sha256": "577bb2a65ce27065038180ffca30600ee5f4f039fa3836553e6d34f54ab0d232"
+    },
+    {
+      "path": "tests/test_three_track.py",
+      "bytes": 6663,
+      "sha256": "2f3ebc011fea7a82edc9bdcbf7123d08d0a16ee3dd122b92c5fa2441688416cd"
+    },
+    {
       "path": "tests/test_topology.py",
       "bytes": 1096,
       "sha256": "ccdd8b99eff91f15f90f35f67e8acf48f4712d75a0bd4ff3fe86052e508000f9"
+    },
+    {
+      "path": "uv.lock",
+      "bytes": 37498,
+      "sha256": "0901a044a411a93e01659c12a6faf23584e95d22d0abaf3eb0d524f920966919",
+      "imported_sha256": "2b2f12401cc591048f4d264cc22a511e4d4d4d95160ae297ab77049449b40455"
     }
   ],
   "excluded": [

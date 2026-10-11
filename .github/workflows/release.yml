@@ -1,0 +1,31 @@
+name: Publish paper release
+
+on:
+  push:
+    tags:
+      - 'v0.1.0'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      RELEASE_TAG: ${{ github.ref_name }}
+    steps:
+      - name: Read release notes from the tagged commit
+        run: |
+          set -euo pipefail
+          gh api "repos/$GH_REPO/contents/docs/releases/$RELEASE_TAG.md?ref=$RELEASE_TAG" \
+            --jq '.content' | base64 --decode > release-notes.md
+          test -s release-notes.md
+      - name: Publish the GitHub release for Zenodo archiving
+        run: |
+          set -euo pipefail
+          gh release create "$RELEASE_TAG" --verify-tag \
+            --title "Staged Binary-Local Diffusion Attention $RELEASE_TAG" \
+            --notes-file release-notes.md
