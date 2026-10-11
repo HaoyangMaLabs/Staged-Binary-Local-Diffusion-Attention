@@ -78,7 +78,7 @@ The script compares:
 
 | Name | Existing implementation | Purpose |
 |---|---|---|
-| `full` | dense causal attention | accuracy upper/reference and quadratic cost |
+| `full` | dense causal attention | matched dense reference and quadratic cost |
 | `left_local` | aligned dyadic local attention | local-only sparse reference |
 | `binary_diffusion` | `left_v2`, binary | proposed two-source diffusion route |
 | `local_jump` | `left_v2`, local + dyadic jump | local shortcut ablation |
