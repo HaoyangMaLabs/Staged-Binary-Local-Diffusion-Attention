@@ -1,10 +1,11 @@
 {
-  "paper": "BinaryDiffusionAttention/paper_en.pdf",
+  "paper": "paper_en.pdf",
   "files": [
     {
       "path": ".github/workflows/release.yml",
-      "bytes": 879,
-      "sha256": "39c27f53a8bd71140973ab8f9bbcb86fbf7bcf6b97162b023be8d929de7f71ef"
+      "bytes": 875,
+      "sha256": "4a1db66b50adad7c10bcd450c37b779617a3763bc4e86adf521cabe46355e582",
+      "imported_sha256": "39c27f53a8bd71140973ab8f9bbcb86fbf7bcf6b97162b023be8d929de7f71ef"
     },
     {
       "path": ".gitignore",
@@ -15,7 +16,8 @@
     {
       "path": ".zenodo.json",
       "bytes": 983,
-      "sha256": "70fefac62a2bcaea56c042e95768c3b02d15d8e4eff042ca710617d403a56516"
+      "sha256": "7f1a9bb24645e0e52495f9e80bc5320a08e4fa75e3653ddb474312fc5addf413",
+      "imported_sha256": "70fefac62a2bcaea56c042e95768c3b02d15d8e4eff042ca710617d403a56516"
     },
     {
       "path": "BiAttn/README.md",
@@ -71,8 +73,8 @@
     },
     {
       "path": "BinaryDiffusionAttention/README.md",
-      "bytes": 4888,
-      "sha256": "106a7fc408a8a74d25a65fdaa75ce881a4aa2ce419ba0cc816eccd41385afb63",
+      "bytes": 4891,
+      "sha256": "247d4f466cf98c62212bed072a780e18d14108e9870c2cc96ded9611fcc26f8f",
       "imported_sha256": "5dc805e686cbceb56db3455a6074458019b2039320c8e83e8c18017c43749d29"
     },
     {
@@ -158,8 +160,8 @@
     },
     {
       "path": "BinaryDiffusionAttention/export_paper_pdf.py",
-      "bytes": 6907,
-      "sha256": "5a5c96c4609aef8ac017956d67be983cefa1e20065422e5d72dc495cd05e945d",
+      "bytes": 6914,
+      "sha256": "bf06bcb7abf34839ad9b6396e551064ab31110ce4e8bc2254ec59709d34aafef",
       "imported_sha256": "b397428bf85d3ae84d8f2273edda42e0d4230580d5bb50e3544223f2c5f73e5d"
     },
     {
@@ -305,12 +307,6 @@
       "bytes": 32954,
       "sha256": "2fa43ec7ef3c5b1cc3dd36ed6d0ed3b8713438668ed05efcc4f0ac82cb09f467",
       "imported_sha256": "e92f787f996b6755d6910b18f8af40697313a31c01676f71cfe768b7dc3ea94f"
-    },
-    {
-      "path": "BinaryDiffusionAttention/paper_en.pdf",
-      "bytes": 279665,
-      "sha256": "f79f4ee8648621ccb63372a38a3e1ce558e9b91e8795dc408d4f810043efa192",
-      "imported_sha256": "1c3f939807f76f10ed8d2f70ef0a27dad3f3e825fde363453641bf4ed41d598a"
     },
     {
       "path": "BinaryDiffusionAttention/plot_paper_figures.py",
@@ -623,7 +619,8 @@
     {
       "path": "CITATION.cff",
       "bytes": 731,
-      "sha256": "e58042d1b1bbfbac9916a60ec8b5b954c2fdeb6ef3255e89412e8e44f741f5c8"
+      "sha256": "27d8b5453550865dadbc1f094fd0cb92fb99900a169ecd23e1fef2e8a9be55c9",
+      "imported_sha256": "e58042d1b1bbfbac9916a60ec8b5b954c2fdeb6ef3255e89412e8e44f741f5c8"
     },
     {
       "path": "LICENSE",
@@ -632,8 +629,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 8309,
-      "sha256": "5061ed62b19120f6e33a68849a54cb39a18a1d7c2056dc9293ba753c74474226",
+      "bytes": 8383,
+      "sha256": "91cad744c1ca2281620a5d75a7146611f4671bba2e3688902d95105d0a27665b",
       "imported_sha256": "6b424903192302572d30e46d86a47027c19bfda1ea7ce84bc3add8a119cee80f"
     },
     {
@@ -642,9 +639,20 @@
       "sha256": "b83026b720ab289eb35529bb1cdf8c8abf64d58c9e9ef024ac23f902aedf913e"
     },
     {
+      "path": "docs/releases/v0.1.1.md",
+      "bytes": 476,
+      "sha256": "edc10c5572c68b10060f7be8577310637a977b591daf1bd4e77613218b19af00"
+    },
+    {
+      "path": "paper_en.pdf",
+      "bytes": 279665,
+      "sha256": "36d599215a87e308f709cfef24ead1dc56fc796443621ac9f48c4a29b8188dd2",
+      "imported_sha256": "1c3f939807f76f10ed8d2f70ef0a27dad3f3e825fde363453641bf4ed41d598a"
+    },
+    {
       "path": "pyproject.toml",
       "bytes": 409,
-      "sha256": "1b02f4948f0ff41676ec434d3bfeb651da062dda57a5b1c98d167aae1dac0cdd",
+      "sha256": "2bafa09076b58a74d87c5cfeae77e024bad97ffd2ec91a05a0528e29ae57b008",
       "imported_sha256": "e9d7a7ca2a0cea6847f9f615bbb91133ec80709837fd203676ce5fa0e9c52896"
     },
     {
@@ -680,7 +688,7 @@
     {
       "path": "uv.lock",
       "bytes": 37498,
-      "sha256": "0901a044a411a93e01659c12a6faf23584e95d22d0abaf3eb0d524f920966919",
+      "sha256": "0a051013b5c31be0e5bd3e2363c06be7ead41d03d3c90605104826646ae11aaa",
       "imported_sha256": "2b2f12401cc591048f4d264cc22a511e4d4d4d95160ae297ab77049449b40455"
     }
   ],

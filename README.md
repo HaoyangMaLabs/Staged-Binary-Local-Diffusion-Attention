@@ -4,7 +4,7 @@ Code, data, and experiment records for **Staged Binary-Local Diffusion Attention
 
 **Author:** HaoyangMa · [haoyang@haoyangma.com](mailto:haoyang@haoyangma.com)
 
-[English paper (PDF)](BinaryDiffusionAttention/paper_en.pdf) · [Manuscript source](BinaryDiffusionAttention/paper_en.md) · [Experiment protocol](BinaryDiffusionAttention/experiment.md) · [Experiment guide](BinaryDiffusionAttention/README.md)
+[English paper (PDF)](paper_en.pdf) · [Manuscript source](BinaryDiffusionAttention/paper_en.md) · [Experiment protocol](BinaryDiffusionAttention/experiment.md) · [Experiment guide](BinaryDiffusionAttention/README.md)
 
 ## How it works
 
@@ -46,7 +46,8 @@ BinaryDiffusionAttention/       Experiment drivers and manuscript
   data/                         WikiText-2, PTB and Tiny Shakespeare splits
   results/                      Recorded JSON, CSV and experiment logs
   figures/                      Paper figures and PDF previews
-  paper_en.md / paper_en.pdf     English paper source and exported PDF
+  paper_en.md                   English manuscript source
+paper_en.pdf                    Exported English paper
 tests/                          Model, causality, topology and data tests
 IMPORT_MANIFEST.json             File inventory and checksums
 ```
@@ -127,11 +128,11 @@ uv run --with pypandoc-binary --with typst --with pymupdf \
   python BinaryDiffusionAttention/export_paper_pdf.py
 ```
 
-Figure generation reads the saved results and updates `figures/`. PDF export reads `paper_en.md`, writes `paper_en.pdf`, and refreshes selected page previews. The PDF includes the author name and email shown above.
+Figure generation reads the saved results and updates `figures/`. PDF export reads `paper_en.md`, writes `paper_en.pdf` in the repository root, and refreshes selected page previews. The PDF includes the author name and email shown above.
 
 ## Citation and archival
 
-[CITATION.cff](CITATION.cff) supplies GitHub citation metadata; [.zenodo.json](.zenodo.json) supplies the author, title and license for Zenodo archiving. The first archival release is `v0.1.0`; see its [release notes](docs/releases/v0.1.0.md). The linked Zenodo integration assigns a DOI after it processes the published GitHub release. No DOI is asserted before that record exists.
+[CITATION.cff](CITATION.cff) supplies GitHub citation metadata; [.zenodo.json](.zenodo.json) supplies the author, title and license for Zenodo archiving. The current release is `v0.1.1`; see its [release notes](docs/releases/v0.1.1.md). The first archival release was `v0.1.0`. The linked Zenodo integration assigns a DOI after it processes the published GitHub release. No DOI is asserted before that record exists.
 
 ## Artifacts and license
 

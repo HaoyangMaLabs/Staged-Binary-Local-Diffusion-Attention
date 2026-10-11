@@ -1,6 +1,6 @@
 [project]
 name = "staged-binary-local-diffusion-attention"
-version = "0.1.0"
+version = "0.1.1"
 description = "Paper experiments for staged binary-local diffusion attention"
 requires-python = ">=3.14"
 dependencies = [

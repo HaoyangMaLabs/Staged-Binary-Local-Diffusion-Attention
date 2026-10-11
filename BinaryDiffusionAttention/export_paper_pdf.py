@@ -119,7 +119,7 @@ def main():
     body = pypandoc.convert_text(source, "typst",
         format="markdown-implicit_figures+tex_math_single_backslash",
         extra_args=["--wrap=none"])
-    pdf = ROOT / "paper_en.pdf"
+    pdf = ROOT.parent / "paper_en.pdf"
     typst.compile((STYLE + "\n" + body).encode(), output=str(pdf), root=str(ROOT))
     doc = pymupdf.open(pdf)
     previews = ROOT / "figures" / "pdf_preview"

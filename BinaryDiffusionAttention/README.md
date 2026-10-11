@@ -27,7 +27,7 @@ GPU benchmark measurements remain CUDA-only. Dataset downloads replace cached
 files atomically after a complete transfer. Training character ordering and
 split boundaries are unchanged.
 
-- [`paper_en.md`](paper_en.md) and [`paper_en.pdf`](paper_en.pdf): English manuscript and exported PDF.
+- [`paper_en.md`](paper_en.md) and [`paper_en.pdf`](../paper_en.pdf): English manuscript and exported PDF.
 - [`experiment.md`](experiment.md): experiment protocol and interpretation rules.
 - [`NOVELTY_AUDIT.md`](NOVELTY_AUDIT.md): conservative prior-art comparison and
   safe novelty claims.
