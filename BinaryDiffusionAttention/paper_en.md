@@ -1,13 +1,13 @@
 # Staged Binary-Local Diffusion Attention: Effective Few-Step Diffusion Along the Time Axis
 
-**HaoyangMa**  
-[haoyang@haoyangma.com](mailto:haoyang@haoyangma.com)
+HaoyangMa  
+haoyang@haoyangma.com
 
 Research manuscript · October 2026
 
 ## Abstract
 
-Staged Binary-Local Diffusion Attention builds sequence representations through learned temporal propagation. Each layer combines a dyadic jump with local interactions, reading at most four sources per position and achieving complete prefix reachability in logarithmic depth. On WikiText-2, a parameter-matched comparison with 65,536-position windows and sixteen layers yields validation cross-entropy of 1.3739, versus 2.2956 for dense attention, after twenty training passes. Training is 5.47× faster at 65K; a separate shallow benchmark achieves 55.57× faster hidden-state forward execution at 1M, with nearly unchanged allocated memory. These results support sparse, composed temporal propagation as an effective language-modeling mechanism in the tested setting, with speedups dependent on implementation and other model costs.
+Can useful sequence representations be formed by diffusing information along the time axis in a small number of steps, rather than repeatedly comparing every position with its entire prefix? We test this hypothesis using Staged Binary-Local Diffusion Attention. Each layer is a parallel, learned propagation step: a dyadic jump carries already-contextualized information across an expanding temporal span, while a small local route maintains neighboring interactions. At most four sources are read per position per step, and binary path composition provides complete prefix reachability in logarithmically many steps. On a fixed PG-19 subset, fifteen layers, maximum 32,768-character windows, and twenty training passes yield three-seed mean train/test cross-entropy of 1.3076/1.4330, compared with 1.4395/1.5558 for parameter-matched dense attention. A repository-disjoint Python subset of The Stack Smol reverses this result: sparse train/test cross-entropy is 1.2262/1.4252 versus dense 0.7662/0.8394, and test accuracy is lower by 15.98 percentage points. Few-step temporal diffusion is therefore effective in the tested book setting, but not a universally equivalent substitute for dense interactions. Separately, a matched twenty-layer million-position forward benchmark uses approximately 139,810 times fewer graph interactions and measures 476.58× lower attention-interaction GPU kernel time and 56.01× faster backbone wall time, with nearly unchanged peak allocated memory. The latter includes FFNs, projections, and normalization but excludes the vocabulary head, backward pass, and optimizer. Structural savings, learning effectiveness, and engineering speed are distinct findings; neither fixed-budget training experiment establishes convergence.
 
 ## 1. Introduction
 
@@ -22,8 +22,8 @@ We investigate a staged graph with two complementary routes. A dyadic route expa
 Our contributions are:
 
 1. A formulation of few-step temporal diffusion as learned causal message passing, with constant source count and logarithmic-depth prefix coverage.
-2. Empirical validation of its language-modeling effectiveness on WikiText-2, using three-seed topology screening and a depth-sufficient 65K comparison that reports both train and validation cross-entropy.
-3. A secondary systems study of the resulting computation reduction, separating theoretical interaction counts from measured throughput and memory against fused dense attention.
+2. Paired three-seed, depth-sufficient accuracy comparisons on a fixed PG-19 book subset and a repository-disjoint Python subset of The Stack Smol, demonstrating both a natural-language benefit and a substantial code-domain deficit. Earlier WikiText-2 experiments document exploratory schedule selection.
+3. A secondary systems study against fused dense attention, including a matched twenty-layer million-position benchmark that separates attention-interaction kernel time from backbone wall time, fixed model costs, and memory.
 
 The evidence has three distinct roles: path coverage establishes that the proposed transport routes exist; language-model losses establish that the mechanism can learn useful representations; throughput measurements establish its current engineering benefit. The latter does not substitute for the former two.
 
@@ -95,7 +95,7 @@ r=\sum_{\ell=1}^{L}b_\ell 2^{\ell-1},\qquad b_\ell\in\{0,1\}.
 
 Choosing either a self edge or a dyadic edge at each layer produces a path with that offset. All intermediate positions remain valid whenever the starting source is nonnegative. Thus an \(L\)-layer stack has paths from every prefix position within a span of \(2^L\) positions. Added local edges cannot remove these paths.
 
-This guarantees structural reachability, not dense-attention equivalence or successful retrieval. Ten layers suffice for a 1,024-position span; sixteen for 65,536; twenty for 1,048,576. The eight-layer million-position forward benchmark and four-layer million-position training pilot do not satisfy the last condition.
+This guarantees structural reachability, not dense-attention equivalence or successful retrieval. Ten layers suffice for a 1,024-position span; fifteen for 32,768; sixteen for 65,536; twenty for 1,048,576. The primary accuracy tests and updated twenty-layer systems test use coverage-sufficient depth. The historical eight-layer million-position forward benchmark and four-layer training pilot do not.
 
 ![Temporal diffusion routes and exponentially expanding coverage](figures/fig01_temporal_diffusion.png)
 
@@ -146,15 +146,21 @@ Fusion reduces overhead but cannot eliminate the residual stack, projections, no
 
 ### 5.1 Dataset and objective
 
-All experiments reported here use WikiText-2 raw. Characters are retained with their original case, punctuation, and line structure. A training-derived vocabulary maps unseen validation characters to an unknown entry. The long-context training vocabulary has 1,014 entries. The task is next-character prediction with ordinary full-vocabulary cross-entropy, reported in nats per character.
+The primary accuracy comparisons use two fixed custom subsets: PG-19 books and Python files from The Stack Smol. Both use next-character prediction, ordinary full-vocabulary cross-entropy in nats per character, and training-only character vocabularies with an unknown entry. Character perplexity is not an official word-level PG-19 score or a code-generation benchmark score.
 
-Training windows do not overlap in their input positions. Each window includes one extra character to form shifted targets. State resets at window boundaries. Windows can cross article boundaries because the raw split is treated as a stream. Incomplete tails are dropped rather than padded.
+PG-19 selection ranks object keys by SHA256 of `pg19-mini-v1:` plus the key within each official split, selecting 30 train, 5 validation, and 5 test books. Raw downloaded character totals are 10,877,012 / 1,105,235 / 1,957,650; universal-newline conversion gives 10,663,144 training targets per pass and 1,921,910 test targets. Books are not concatenated. The vocabulary has 187 entries including UNK; validation/test unknown rates are 0.00046098% / 0.00067641%.
+
+The Stack Smol uses its Python JSON file at revision `4a6938ce94446f324c6629e7de00ac591710044b`. Normalize line endings and remove exact duplicate content globally, then hash repository identities into 80/10/10 partitions. Select hash-ranked whole repositories to approximately match the PG-19 character budgets. Train/validation/test contain 1,261 / 138 / 248 files from 1,165 / 134 / 234 repositories, with 10,888,182 / 1,110,223 / 1,963,664 characters. Repository and exact-content overlaps are absent; near-duplicate forks are not guaranteed absent. The vocabulary has 1,192 entries; validation/test unknown rates are 0.01837% / 0.04089%. Median training file length is 2,769 characters and only 56 training files exceed 32K, so this is a code-domain test, not an exclusively long-context workload.
+
+Both comparisons use at most 32,768 input characters plus one shifted target character, preserving short samples and partial tails. Consecutive windows share only the boundary character; each within-document transition is scored once per pass. No attention crosses book/file or window boundaries. PG-19 uses no padding. Code inputs are right-padded to power-of-two buckets from 128 to 32K to bound Triton specialization; padded targets are ignored by CE and accuracy. All metrics weight only real character transitions. Prefix-invariance checks confirm that changing future tokens does not change earlier outputs.
+
+Historical exploratory experiments use WikiText-2 raw and a 1,014-entry long-context vocabulary. Those older runs concatenate each split into a stream, can cross article boundaries, and drop incomplete tails. They are retained as historical evidence, not the primary natural-document accuracy protocol.
 
 ### 5.2 Hardware and measurement
 
-The remote GPU reports **NVIDIA GeForce RTX 4090**, **49,140 MiB** total memory, driver **610.43.03**, CUDA **13.0**, and PyTorch **2.14.0+cu130**. This is the observed server configuration, approximately 48 GiB; it should not be assumed to describe a standard retail 24 GB card. Earlier topology studies ran on a GTX 1080 Ti and are reported separately.
+The updated twenty-layer systems benchmark and PG-19/Stack Smol comparisons run on an **NVIDIA GeForce RTX 4090 reporting 24,564 MiB** total memory, driver **610.43.03**, with the existing CUDA 13.0/PyTorch 2.14.0+cu130 environment. Historical remote WikiText and eight-layer scaling records report **49,140 MiB**, approximately 48 GiB; this older server configuration must not be conflated with the updated 24 GB measurements. Earlier topology studies ran on a GTX 1080 Ti.
 
-Remote experiments use batch size one and BF16 autocast. Forward timing uses two warmups and three timed iterations, with CUDA synchronization and process isolation between configurations. It measures `forward_hidden`, including embeddings and the Transformer stack but excluding the vocabulary head, backward pass, and optimizer.
+Remote experiments use batch size one and BF16 autocast, without `torch.compile`. The updated twenty-layer forward test uses one warmup, three synchronized unprofiled timings (median wall time), and one separate profiler iteration. Attention time is the sum of GPU interaction-kernel times across the stack, not standalone attention wall time. Backbone wall time includes embeddings, projections, normalization, and FFNs, but excludes the vocabulary head, backward pass, and optimizer. Historical eight-layer scaling uses two warmups and three timings.
 
 Training times are sums of timed training loops, including forward, cross-entropy, backward, clipping, optimizer updates, transfers, and per-update synchronization. First-use kernel compilation inside these loops is included. **Dataset loading, model construction, validation passes, and checkpoint serialization are not included.** Thus the reported values are training-loop time, not complete job turnaround time. Peak memory means CUDA peak allocated memory, not reserved memory or total device occupancy.
 
@@ -162,17 +168,20 @@ Training times are sums of timed training loops, including forward, cross-entrop
 
 | Experiment | Width | Layers | Heads | FFN hidden | Vocabulary | Parameters per model | Budget |
 |---|---:|---:|---:|---:|---:|---:|---|
+| PG-19-mini accuracy | 64 | 15 | 4 | 128 | 187 | 628,832 | 20 passes × 3 seeds |
+| Stack Smol Python accuracy | 64 | 15 | 4 | 128 | 1,192 | 693,152 | 20 passes × 3 seeds |
+| Matched 1M forward | 96 | 20 | 4 | 256 | 6,400 | 2,831,136 | 1 warmup + 3 forwards + profile |
 | Forward scaling | 96 | 8 | 4 | 256 | 6,400 | 1,501,152 | 2 warmups + 3 forwards |
 | 1M training pilot | 64 | 4 | 4 | 128 | 1,014 | 229,440 | 3 passes, 30 updates |
 | 65K training | 64 | 16 | 4 | 128 | 1,014 | 722,880 | 20 passes, 3,320 updates |
 
 Parameter counts above are independently recomputed from the current configuration code; the raw long-context JSON files do not store parameter counts. Dense and sparse counts match. The forward inputs are synthetic random IDs, not a language-quality evaluation.
 
-The two training modes use the same initialization seed, data order, width, depth, tied vocabulary, and optimizer settings. AdamW uses learning rate 3×10⁻⁴, and gradients are clipped to norm 1.0. Dropout is zero. The script otherwise uses PyTorch AdamW defaults; no learning-rate scheduler is configured. Only one seed is available for the long-context comparisons.
+The primary comparisons use seeds 1, 2, and 3. Conceptually corresponding parameters receive identical initialization by canonical parameter name and paired seed, and per-pass sample permutations match. AdamW uses learning rate 3×10⁻⁴, weight decay 0.01, clipping at norm 1, no dropout, and no learning-rate scheduler. Evaluate validation after every pass and select the lowest-validation-CE checkpoint; then separately evaluate train and test at that checkpoint. Save rolling model and optimizer state every 500 updates. Report arithmetic means and sample standard deviations across seeds. Historical WikiText long-window comparisons use one seed and the older driver's optimizer defaults.
 
 ## 6. Results: Learning Effectiveness and Execution Cost
 
-The primary effectiveness evidence is the topology comparison in Section 6.1 and the depth-sufficient language-model experiment in Section 6.4. Sections 6.2 and 6.3 are supplementary systems tests: their long input tensors do not imply that their shallow propagation stacks cover the entire input.
+The primary effectiveness evidence is the paired PG-19 and Python comparison in Section 6.5. Section 6.2 reports the updated coverage-sufficient twenty-layer systems test alongside historical scaling; Sections 6.1, 6.3, and 6.4 retain exploratory results with their original protocols.
 
 ### 6.1 Topology screening at short context
 
@@ -193,6 +202,10 @@ The staged schedule is the method evaluated in the later remote tests. The greed
 *Figure 2. Propagation schedule affects learning quality.* Large markers show three-seed means, whiskers show sample standard deviations, and small markers show individual runs. Training uses the mean of the final ten updates; validation uses the recorded validation CE. The staged schedule has the lowest mean loss among these five routes. Both panels show the same five configurations; lower is better.
 
 ### 6.2 Long-context hidden-state forward throughput
+
+The updated matched test uses twenty layers at 1,048,576 positions, width 96, FFN hidden 256, four heads, and batch one on the 24 GB server. Both graphs have sufficient structural depth. Dense FlashAttention versus fused sparse Triton measures **40,902.827 ms versus 85.826 ms** in attention-interaction GPU kernels, or **476.580×**. Synchronized backbone median wall times are **41,491.949 ms versus 740.775 ms**, or **56.012×**. Peak allocated memory is **3.213815 versus 3.213824 GiB**, effectively equal. The approximately 139,810× edge reduction applies to this same depth; it is neither a whole-model FLOP reduction nor a prediction of wall-time speedup. Inputs are synthetic GPU-resident IDs; the benchmark establishes execution cost, not million-position language capability.
+
+The following eight-layer measurements are retained as a **historical scaling sweep**, not the source of the updated twenty-layer headline figures:
 
 | Context | Dense characters/s | Sparse characters/s | Speedup | Peak allocated GiB, dense / sparse |
 |---:|---:|---:|---:|---:|
@@ -227,7 +240,7 @@ The measured training-loop gain is approximately 65.9× including first-pass com
 
 This historical pilot has no held-out evaluation, and four layers are insufficient for full-window sparse coverage. Its purpose is execution feasibility and training throughput. The current training script subsequently gained a mandatory validation-window check; reproducing this older pilot requires accounting for that script-version difference, since WikiText-2 validation does not provide a complete 1M window.
 
-### 6.4 Primary validation: sixteen diffusion steps over a 65K window
+### 6.4 Historical WikiText validation: sixteen diffusion steps over a 65K window
 
 At 65,536 positions, sixteen layers provide complete dyadic path coverage. Training uses 166 complete windows per pass: 10,878,976 target characters per pass and 217,579,520 over twenty passes. The training tail drops 39,915 target positions. Validation uses the separate `wiki.valid.raw` split with seventeen complete windows, omitting 30,635 trailing target positions.
 
@@ -236,23 +249,40 @@ At 65,536 positions, sixteen layers provide complete dyadic path coverage. Train
 | Dense causal | 4.4062 | 2.3188 | 2.2956 | 1,548.7 | 140,500 | 5.099 |
 | Staged binary-local | 4.3815 | **1.3256** | **1.3739** | **283.3** | **767,946** | 5.113 |
 
-The primary result is that sixteen sparse temporal diffusion steps support effective language modeling over a structurally covered 65K window. Final-pass train CE is lower than the dense reference by 0.9932 nats, and validation CE by 0.9217 nats. This validates the usefulness of the composed propagation mechanism in this setting, rather than merely its ability to execute a sparse graph. Training CE is the mean of online losses during the pass, not a frozen final-checkpoint reevaluation; validation CE is evaluated after the pass. As a separate practical benefit, sparse training is 5.47× faster in the measured loops.
+In this historical experiment, sixteen sparse temporal diffusion steps support effective language modeling over a structurally covered 65K window. Final-pass train CE is lower than the dense reference by 0.9932 nats, and validation CE by 0.9217 nats. Training CE is the mean of online losses during the pass, not a frozen final-checkpoint reevaluation; validation CE is evaluated after the pass. As a separate practical benefit, sparse training is 5.47× faster in the measured loops. Because the stream crosses article boundaries, this experiment does not establish performance on natural 65K documents.
 
 The result shows lower loss at a matched token/update budget, not matched-quality speed or converged asymptotic superiority. Neither model is proven to have reached its best attainable loss. No WikiText test-set result is reported.
 
 ![Training and validation cross-entropy over twenty passes](figures/fig02_learning_curves.png)
 
-*Figure 4. Primary evidence for effective temporal diffusion.* At 65,536 positions and sixteen layers, the staged route has complete dyadic path coverage and achieves lower train and validation CE than the parameter-matched dense reference. Curves are read directly from all twenty saved pass records, without smoothing. Training is the online pass mean; validation is measured after each pass. One seed is available.
+*Figure 4. Historical WikiText learning curves.* At 65,536 positions and sixteen layers, the staged route has complete dyadic path coverage and achieves lower train and validation CE than the parameter-matched dense reference. Curves are read directly from all twenty saved pass records, without smoothing. Training is the online pass mean; validation is measured after each pass. One seed is available. This stream-based experiment is not the primary natural-document comparison.
+
+### 6.5 Primary accuracy comparison: books versus code
+
+Both tasks use fifteen layers and the same twenty-pass budget per paired seed. Train below is a separate evaluation at the best validation checkpoint, not the online training-pass average. CE dispersion is sample standard deviation across three seeds; accuracy is the mean next-character accuracy. These are custom subsets, not full official benchmark results.
+
+| Dataset | Model | Train CE | Test CE | Test accuracy |
+|---|---|---:|---:|---:|
+| PG-19-mini | Dense causal | 1.4395 ± 0.0314 | 1.5558 ± 0.0234 | 53.76% |
+| PG-19-mini | Staged binary-local | 1.3076 ± 0.0038 | 1.4330 ± 0.0043 | 57.68% |
+| Stack Smol Python | Dense causal | 0.7662 ± 0.0210 | 0.8394 ± 0.0207 | 78.07% |
+| Stack Smol Python | Staged binary-local | 1.2262 ± 0.0109 | 1.4252 ± 0.0013 | 62.09% |
+
+On PG-19, sparse wins in all three paired seeds: test CE improves by 0.12279 nats and accuracy by 3.923 percentage points. Dense selects pass 20 for every seed; sparse selects passes 20, 20, and 19. This supports effective few-step temporal diffusion under the tested book-training budget, not equal converged performance or an isolated demonstration of distant retrieval.
+
+On Python, dense wins in all three paired seeds: sparse test CE is higher by 0.58584 nats and accuracy is lower by 15.980 percentage points. The large training-CE deficit shows that the failure is not confined to unseen repositories. Sparse selects passes 20, 18, and 20; dense selects pass 20 in all seeds. Sparse online train CE still falls slowly, approximately 0.008–0.01 per pass near the end for seeds 1 and 2, while validation CE is near a plateau around 1.41–1.43. Neither model's asymptotic performance is established by this budget.
+
+The opposing outcomes are important: broad graph reachability and low interaction count do not guarantee dense-like access to precise source information. Domain differences, document lengths, vocabulary sizes, and learning dynamics are confounded across datasets; the experiments do not isolate a single cause of the code deficit.
 
 ## 7. Discussion: Effective Temporal Diffusion and Its Engineering Limits
 
 The experiments support the proposition that language modeling does not require direct access to every historical token at every layer: useful context can instead be formed by a small sequence of learned, scale-expanding transport steps. This is the central result. The staged route's advantage in short-context screening further suggests that combining temporal expansion with local organization is more useful than maximizing graph coverage alone.
 
-The 65K experiment combines sufficient propagation depth with lower training and validation loss than the dense reference. It demonstrates the effectiveness of the mechanism as a whole; it does not isolate how much of the quality gain comes specifically from distant messages rather than local inductive bias. Establishing that causal attribution requires long-jump ablations and controlled long-range tasks. The million-position systems tests answer a different question—execution cost—and are not the primary validation of diffusion effectiveness.
+The PG-19 comparison combines sufficient propagation depth with lower train and test loss across paired seeds. It demonstrates effectiveness of the mechanism as a whole in this setting, but does not isolate distant-message benefits from local inductive bias. The Python comparison supplies a substantial counterexample to universal substitution: dense attention fits both train and test better. Precise identifier, delimiter, or definition access may be harder after multi-hop mixing, but this is a hypothesis, not a demonstrated cause. Controlled retrieval tasks and route ablations are needed. The million-position systems test answers a separate question—execution cost.
 
 ### 7.1 Edge reduction is not whole-model acceleration
 
-The approximately 140,000× figure concerns interactions in a twenty-layer million-position graph. It cannot be divided directly into the 55.57× eight-layer benchmark as an implementation-efficiency score: the depths and coverage regimes differ. More fundamentally, interaction count excludes substantial model work.
+The approximately 139,810× figure concerns interactions in the same twenty-layer million-position configuration that yields 476.58× lower interaction-kernel time and 56.01× faster backbone wall time. The depths now match, but the quantities remain different: graph edges, profiled kernel time, and synchronized wall time. Interaction count excludes projections, FFNs, normalization, and other model work; it does not define an implementation-efficiency percentage or a quality ratio.
 
 If a fraction \(f\) of baseline elapsed time belongs to the replaced operation, and that operation is accelerated by \(r\), the idealized whole-model speedup is
 
@@ -266,7 +296,7 @@ For a hypothetical \(f=0.4\)–0.6 and extremely large \(r\), the ceiling is app
 
 Replacing dense matrix arithmetic with a handful of source operations lowers work but can lower hardware utilization. Launch costs, scattered historical reads, per-layer projections, and synchronization remain. Fusion reduces intermediates and launch count, but does not remove all overhead.
 
-The measured short-context slowdown is consistent with this explanation. However, the saved experiments do not contain a quantitative decomposition of launch time, memory stalls, arithmetic time, and utilization. We therefore do not claim that kernel launches alone account for the missing theoretical gain.
+The measured short-context slowdown is consistent with this explanation. The updated profiler audit separates interaction kernels, GEMMs, and other GPU work. In the twenty-layer 1M forward, FFN GEMMs take approximately 49.37/49.30 ms (dense/sparse), QKV projections 26.51/26.44 ms, output projections 8.05/8.01 ms, and other GPU work 573.09/570.96 ms. These substantial unchanged costs explain why backbone speedup is below interaction-kernel speedup. Summed kernel categories are not wall-time fractions and do not independently attribute memory stalls or CPU launch latency. We therefore do not claim that kernel launches alone account for the missing theoretical gain.
 
 ### 7.3 Why memory is nearly unchanged
 
@@ -280,23 +310,23 @@ Consequently, fewer interactions do not guarantee lower measured peak allocation
 
 ### 7.4 What the loss comparison establishes
 
-The sparse graph's lower loss in the depth-sufficient run indicates that dense connectivity is not necessary to attain the observed quality in this small-model setting. It does not quantify how many individual dense edges are useless, or establish equal long-range retrieval capability. A connection-count ratio is not a ratio of representational quality.
+The sparse graph's lower PG-19 loss indicates that dense connectivity is not necessary to attain the observed quality in that small-model setting. The Python deficit establishes that the same sparse replacement is not equally effective across the tested domains. Neither result identifies individual useless edges or proves equal long-range retrieval capability. A connection-count ratio is not a ratio of representational quality.
 
 The short-context screening also rejects the strongest version of the initial intuition: avoiding repeated structural interactions is not sufficient for good learning. Useful local reuse and path order can matter more than graph coverage alone.
 
 ## 8. Limitations and Next Experiments
 
-The long-context results use small character models, one dataset, one seed, and one remote GPU configuration. The forward benchmark has only three timed repetitions and no reported confidence intervals. The staged schedule was chosen after topology screening; this is exploratory evidence rather than a preregistered comparison.
+The primary accuracy results use small character models, two custom dataset subsets, and three paired seeds per task; historical WikiText long-window results use one seed. Most Python files are short, and repository splitting plus exact deduplication does not exclude near-duplicate forks. No fixed-budget comparison establishes convergence. The forward benchmark has three timed repetitions and no reported confidence intervals. The staged schedule was chosen after topology screening; this is exploratory evidence rather than a preregistered comparison. Historical 48 GiB and updated 24 GB server measurements are reported separately.
 
-Reachability does not establish information retention. Full-window retrieval, copying, and dependency tasks remain untested. The runs do not measure incremental decoding, KV-cache behavior, large-model scaling, or deployment latency. No quantitative hardware-overhead attribution or cross-device study is available.
+Reachability does not establish information retention. Full-window retrieval, copying, and dependency tasks remain untested. The runs do not measure incremental decoding, KV-cache behavior, large-model scaling, or deployment latency. The kernel-category audit does not isolate all launch and memory-stall contributions; no controlled cross-device hardware study is available.
 
-The next comparisons should repeat depth-sufficient training across seeds; evaluate at matched quality and matched wall time as well as matched token budget; add retrieval/copying tasks; vary local-neighbor count and schedule at long context; and profile output-memory and kernel-time contributions. Direct implementations of closely related sparse methods are needed before claiming superiority over them. Earlier token-level analogues are not official reproductions of published architectures.
+The next comparisons should extend both architectures under matched budgets, evaluate matched quality and wall time, isolate the Python deficit with retrieval/copying and identifier-dependency tasks, and vary local-neighbor count and jump schedule. Hybrid direct-access routes and larger model widths may test whether multi-hop transport is the bottleneck. Further output-memory and hardware-overhead profiling is needed. Direct implementations of closely related sparse methods are required before claiming superiority over them; earlier token-level analogues are not official reproductions.
 
 ## 9. Conclusion
 
-The central finding is that **few-step diffusion along the time axis is effective for causal language modeling in the tested setting**. Instead of repeatedly constructing dense prefix interactions, the model relays contextualized states through a small set of learned local and dyadic routes. Sixteen propagation steps provide structural coverage of 65,536 positions, and the corresponding WikiText-2 experiment achieves lower training and validation cross-entropy than a parameter-matched dense reference. Three-seed short-context screening supplies additional evidence for the staged schedule.
+The central finding is that **few-step diffusion along the time axis can be effective for causal language modeling, but its effectiveness is task-dependent**. Fifteen learned local-and-dyadic steps provide structural coverage of a 32K window. In the paired PG-19 subset experiment, they achieve lower train and test cross-entropy than parameter-matched dense attention across three seeds. The same design substantially underperforms on the Python subset, including on training data. Complete routes are therefore not sufficient to preserve every useful dependency.
 
-Reduced computation is a consequence of this transport design, not the main criterion by which its effectiveness is established. The fused implementation delivers 5.47× faster training in the depth-sufficient comparison and 55.57× faster hidden-state forward execution in a separate million-position benchmark. Those gains remain far below the structural edge reduction, and memory is nearly unchanged. The next question is how broadly few-step temporal diffusion retains its learning advantages, and how much of its computational opportunity better implementations can realize.
+Reduced computation is a consequence of this transport design, not the sole criterion for effectiveness. At twenty layers and one million positions, the fused implementation reduces attention-interaction GPU kernel time by 476.58× and backbone forward wall time by 56.01×, compared with fused dense attention. Fixed FFN, projection, normalization, and data-movement costs remain; peak allocated memory is nearly unchanged. These forward measurements exclude the vocabulary head, backward pass, and optimizer. The open questions are where sparse transport retains sufficient information, what governs its domain-specific failures, and how software or hardware better suited to sparse work can realize more of the structural opportunity.
 
 ## References
 
@@ -307,6 +337,8 @@ Reduced computation is a consequence of this transport design, not the main crit
 5. Dao et al. (2022). [FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness](https://arxiv.org/abs/2205.14135).
 6. Merity et al. (2016). [Pointer Sentinel Mixture Models](https://arxiv.org/abs/1609.07843). WikiText dataset introduction.
 7. Meta (2025). [The Llama 4 herd: The beginning of a new era of natively multimodal AI innovation](https://ai.meta.com/blog/llama-4-multimodal-intelligence/). See also the [official Llama 4 attention implementation](https://github.com/meta-llama/llama-models/blob/main/models/llama4/model.py) for local chunked and global attention masks.
+8. Rae et al. (2019). [Compressive Transformers for Long-Range Sequence Modelling](https://arxiv.org/abs/1911.05507). PG-19 source and official split description: [dataset repository](https://github.com/google-deepmind/pg19).
+9. BigCode. [The Stack Smol dataset card](https://huggingface.co/datasets/bigcode/the-stack-smol). Our Python subset, repository split, and exact-deduplication protocol are custom and documented separately.
 
 ## Appendix A. Artifact Map
 
@@ -315,6 +347,11 @@ Paths are relative to `BinaryDiffusionAttention/` unless indicated otherwise.
 | Evidence | Artifact |
 |---|---|
 | Experimental notes | `experiment.md` |
+| Primary book accuracy protocol/results | `PG19_MINI_EXPERIMENT.md`; `results/pg19_mini_32k_v1/` |
+| Primary Python accuracy protocol/results | `STACK_SMOL_EXPERIMENT.md`; `results/stack_smol_python_32k_v1/` |
+| Matched twenty-layer 1M measurements | `results/gemm_l20_1m/`; `bench_gemm_breakdown.py` |
+| Kernel-category audit | `GEMM_BREAKDOWN.md`; `results/gemm_breakdown_4090_v1/` |
+| Paired natural-document trainers | `pg19_mini_compare.py`, `run_pg19_mini_grid.py`, `stack_smol_compare.py` |
 | Internal three-seed screening | `results/wikitext_internal_3seed/` |
 | Forward scaling measurements | `results/sbda_vs_causal_4090_forward.json` and `.log` |
 | 1M pilot | `results/wikitext_1m_causal_3pass.json`, `results/wikitext_1m_sbda_3pass.json`, corresponding logs |
@@ -340,6 +377,20 @@ uv run --with matplotlib python BinaryDiffusionAttention/plot_paper_figures.py
 Run from the repository root with the recorded CUDA environment and installed dependencies. These commands document the experiment; they have not been re-executed to prepare this manuscript.
 
 ```bash
+python BinaryDiffusionAttention/pg19_mini_compare.py --prepare
+python BinaryDiffusionAttention/run_pg19_mini_grid.py
+
+python BinaryDiffusionAttention/stack_smol_compare.py --prepare /path/to/data/python/data.json
+python BinaryDiffusionAttention/stack_smol_compare.py --smoke
+python BinaryDiffusionAttention/stack_smol_compare.py
+
+python BinaryDiffusionAttention/bench_gemm_breakdown.py --kind forward --mode causal \
+  --length 1048576 --layers 20 --warmup 1 --iters 3 --profile-iters 1 \
+  --output BinaryDiffusionAttention/results/reproduced_l20_causal.json
+python BinaryDiffusionAttention/bench_gemm_breakdown.py --kind forward --mode sbda \
+  --length 1048576 --layers 20 --warmup 1 --iters 3 --profile-iters 1 \
+  --output BinaryDiffusionAttention/results/reproduced_l20_sparse.json
+
 python BinaryDiffusionAttention/bench_sbda_vs_causal_forward.py \
   --grid --device cuda --dtype bf16 \
   --output BinaryDiffusionAttention/results/reproduced_forward.json

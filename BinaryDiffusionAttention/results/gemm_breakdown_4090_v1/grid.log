@@ -1,0 +1,28 @@
+START forward_causal_4096
+END forward_causal_4096 ok wall_ms 12.236649869009852 gemm_pct 11.105020935112853
+START forward_sbda_4096
+END forward_sbda_4096 ok wall_ms 10.645030066370964 gemm_pct 14.035565202409003
+START forward_causal_16384
+END forward_causal_16384 ok wall_ms 11.252242140471935 gemm_pct 5.226158077443575
+START forward_sbda_16384
+END forward_sbda_16384 ok wall_ms 10.539127979427576 gemm_pct 14.679876083673873
+START forward_causal_65536
+END forward_causal_65536 ok wall_ms 74.96535987593234 gemm_pct 1.760591116009955
+START forward_sbda_65536
+END forward_sbda_65536 ok wall_ms 12.873567873612046 gemm_pct 11.127968552809122
+START forward_causal_1048576
+END forward_causal_1048576 ok wall_ms 16593.35835184902 gemm_pct 0.2017530254547584
+START forward_sbda_1048576
+END forward_sbda_1048576 ok wall_ms 294.66647002846 gemm_pct 11.36958767635961
+START train_causal_4096
+END train_causal_4096 ok wall_ms 63.324081944301724 gemm_pct 11.815455386879265
+START train_sbda_4096
+END train_sbda_4096 ok wall_ms 80.65471984446049 gemm_pct 18.167048860137967
+START train_causal_16384
+END train_causal_16384 ok wall_ms 62.643477926030755 gemm_pct 4.539999950562348
+START train_sbda_16384
+END train_sbda_16384 ok wall_ms 65.19870599731803 gemm_pct 15.546117664773412
+START train_causal_65536
+END train_causal_65536 ok wall_ms 470.38577892817557 gemm_pct 1.2563224526703727
+START train_sbda_65536
+END train_sbda_65536 ok wall_ms 65.10607688687742 gemm_pct 13.851029229182652

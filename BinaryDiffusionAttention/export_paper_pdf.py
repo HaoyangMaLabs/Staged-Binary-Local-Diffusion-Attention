@@ -66,7 +66,8 @@ def style_tables(source):
     titles = ["Interaction budget at coverage-sufficient depth",
               "Matched model configurations", "Three-seed topology screening",
               "Hidden-state forward scaling", "Million-position training pilot",
-              "Depth-sufficient 65K training", "Experiment and implementation artifacts"]
+              "Historical depth-sufficient 65K training", "Paired book and code accuracy",
+              "Experiment and implementation artifacts"]
     index = 0
 
     def replace(match):
@@ -101,13 +102,16 @@ def style_tables(source):
             code += table_code("1.6fr, 1fr, 1fr, 1.1fr",
                 ["Model", "Training time (s)", "Characters/s", "Peak allocated GiB"], costs)
             code += ']\n'
+        elif index == 6:
+            code += table_code("1.3fr, 1.7fr, 1.3fr, 1.3fr, 1fr",
+                ["Dataset", "Model", "Train CE", "Test CE", "Test accuracy"], rows, size=8)
         else:
             code += table_code("1.5fr, 4fr", ["Evidence", "Artifact (relative path)"], rows, numeric=False)
         index += 1
         return "\n```{=typst}\n" + code + "```\n\n"
 
     result = re.sub(r"(?m)^\|[^\n]*\n\|[-:| ]+\n(?:\|[^\n]*\n)+", replace, source)
-    assert index == len(titles), f"Expected seven tables, found {index}"
+    assert index == len(titles), f"Expected {len(titles)} tables, found {index}"
     return result
 
 

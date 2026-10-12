@@ -1,0 +1,138 @@
+{
+  "status": "ok",
+  "created_utc": "2026-10-11T15:17:52.439131+00:00",
+  "hardware": "NVIDIA GeForce RTX 4090, 24564 MiB, 610.43.03",
+  "torch": "2.14.0+cu130",
+  "cuda": "13.0",
+  "mode": "sbda",
+  "kind": "forward",
+  "length": 16384,
+  "dtype": "bf16",
+  "batch": 1,
+  "config": {
+    "dim": 96,
+    "layers": 8,
+    "ff_hidden": 256,
+    "vocab": 6400,
+    "heads": 4
+  },
+  "unprofiled_wall_ms_median": 10.539127979427576,
+  "wall_ms_samples": [
+    10.713269002735615,
+    10.539127979427576,
+    10.464126942679286
+  ],
+  "cuda_stream_ms_median": 10.512384414672852,
+  "peak_allocated_gib": 0.06346607208251953,
+  "warmup": 2,
+  "iters": 3,
+  "profile_iters": 2,
+  "gpu_kernel_ms": 3.0912794999999487,
+  "category_ms": {
+    "other_gpu": 2.0721524999999374,
+    "qkv_gemm": 0.1547035000000032,
+    "attention_kernel": 0.5653310000000056,
+    "out_gemm": 0.052159999999998485,
+    "ffn_gemm": 0.24693250000000408
+  },
+  "category_pct_gpu_kernel_time": {
+    "other_gpu": 67.03219492122831,
+    "qkv_gemm": 5.004513503227572,
+    "attention_kernel": 18.287928995097822,
+    "out_gemm": 1.6873272054500201,
+    "ffn_gemm": 7.988035374996281
+  },
+  "phase_gpu_kernel_ms": {
+    "forward": 3.0912794999999464
+  },
+  "unmapped_backward_gemm_ms": 0.0,
+  "top_operators_gpu_ms": [
+    [
+      "_FusedSBDAKeyBackward",
+      0.5653310000000056
+    ],
+    [
+      "aten::copy_",
+      0.5180379999999846
+    ],
+    [
+      "aten::mm",
+      0.4537960000000058
+    ],
+    [
+      "aten::mul",
+      0.39676600000000245
+    ],
+    [
+      "aten::_fused_rms_norm",
+      0.22825749999999445
+    ],
+    [
+      "aten::cat",
+      0.21213099999999313
+    ],
+    [
+      "aten::add",
+      0.17114999999999192
+    ],
+    [
+      "aten::mean",
+      0.1268960000000043
+    ],
+    [
+      "aten::pow",
+      0.1080479999999943
+    ],
+    [
+      "aten::neg",
+      0.061213999999986744
+    ],
+    [
+      "aten::sin",
+      0.05508900000000314
+    ],
+    [
+      "aten::cos",
+      0.05446750000000431
+    ],
+    [
+      "aten::silu",
+      0.05036850000000459
+    ],
+    [
+      "aten::arange",
+      0.03026949999998715
+    ],
+    [
+      "aten::rsqrt",
+      0.018320499999997998
+    ],
+    [
+      "aten::div",
+      0.016688999999991662
+    ],
+    [
+      "aten::fill_",
+      0.01473600000000124
+    ],
+    [
+      "aten::gather",
+      0.009711999999999762
+    ]
+  ],
+  "fixed_gemm_pct_gpu_kernel_time": 14.679876083673873,
+  "gpu_kernel_only_ceiling_if_only_gemm_remains": 6.8120466024379,
+  "forward_flop_model": {
+    "fixed_gemm": 28991029248,
+    "dense_interactions": 412342026240,
+    "sparse_interactions": 176055936,
+    "dense_fixed_gemm_pct": 6.568968466670468
+  },
+  "notes": [
+    "GPU shares sum exclusive CPU-operator device times, not end-to-end wall-time shares.",
+    "Backward GEMMs mapped using forward/backward autograd sequence numbers.",
+    "GEMM means mm/addmm/bmm/baddbmm kernels; casts, activations and launch gaps excluded.",
+    "Kernel-only ceiling is a decomposition thought experiment, not a wall-time bound.",
+    "Forward FLOP model excludes softmax, norms, activations and causal-tile overcompute."
+  ]
+}

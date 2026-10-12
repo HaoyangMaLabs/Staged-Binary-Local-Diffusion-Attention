@@ -314,7 +314,7 @@ wheels = [
 
 [[package]]
 name = "staged-binary-local-diffusion-attention"
-version = "0.1.1"
+version = "0.1.2"
 source = { virtual = "." }
 dependencies = [
     { name = "torch" },

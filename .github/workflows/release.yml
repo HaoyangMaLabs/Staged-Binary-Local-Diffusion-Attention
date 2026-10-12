@@ -17,6 +17,8 @@ jobs:
       GH_REPO: ${{ github.repository }}
       RELEASE_TAG: ${{ github.ref_name }}
     steps:
+      - name: Check out the tagged artifacts
+        uses: actions/checkout@v4
       - name: Read release notes from the tagged commit
         run: |
           set -euo pipefail
@@ -26,6 +28,6 @@ jobs:
       - name: Publish the GitHub release for Zenodo archiving
         run: |
           set -euo pipefail
-          gh release create "$RELEASE_TAG" --verify-tag \
+          gh release create "$RELEASE_TAG" paper_en.pdf --verify-tag \
             --title "Staged Binary-Local Diffusion Attention $RELEASE_TAG" \
             --notes-file release-notes.md

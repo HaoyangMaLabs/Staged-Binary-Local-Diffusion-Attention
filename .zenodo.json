@@ -1,12 +1,12 @@
 {
   "title": "Staged Binary-Local Diffusion Attention: Effective Few-Step Diffusion Along the Time Axis",
-  "description": "Research software, English manuscript, datasets, and recorded experiments for staged binary-local diffusion attention. Includes exact sparse attention and Triton kernels, topology scans, matched dense/SBDA training and forward benchmarks, and the original JSON, CSV, and five experiment logs. Contact: haoyang@haoyangma.com. Included datasets retain their upstream terms.",
+  "description": "Research software, English manuscript, datasets, and recorded experiments for staged binary-local diffusion attention. Includes exact sparse attention and Triton kernels, topology scans, matched dense/SBDA training and forward benchmarks, and the original JSON, CSV, and 28 experiment logs. Contact: haoyang@haoyangma.com. Included datasets retain their upstream terms. Includes paired PG-19 and Python accuracy results and a matched twenty-layer million-position forward benchmark.",
   "creators": [
     {
       "name": "HaoyangMa"
     }
   ],
-  "version": "0.1.1",
+  "version": "0.1.2",
   "upload_type": "software",
   "access_right": "open",
   "license": "mit",

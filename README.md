@@ -16,22 +16,25 @@ Composing the dyadic paths provides complete prefix reachability in logarithmic 
 
 ## Recorded results
 
-The paper reports parameter-matched comparisons on WikiText-2:
+The current manuscript reports paired three-seed accuracy comparisons at a maximum of 32,768 characters, fifteen layers and twenty training passes. Test metrics use the best validation checkpoint.
 
-| Measurement | SBDA | Dense causal attention |
+| Dataset / measurement | SBDA | Dense causal attention |
 |---|---:|---:|
-| Final-pass training cross-entropy, 65,536 positions | 1.3256 | 2.3188 |
-| Held-out validation cross-entropy, 65,536 positions | 1.3739 | 2.2956 |
-| Training speed at 65K, relative to dense | 5.47× | 1× |
-| Hidden-state forward speed at 1M, relative to dense | 55.57× | 1× |
+| PG-19 subset, train / test cross-entropy | 1.3076 / 1.4330 | 1.4395 / 1.5558 |
+| PG-19 subset, test accuracy | 57.68% | 53.76% |
+| Python subset, train / test cross-entropy | 1.2262 / 1.4252 | 0.7662 / 0.8394 |
+| Matched 20-layer, 1M attention-interaction kernel speed | 476.58× | 1× |
+| Matched 20-layer, 1M backbone wall-time speed | 56.01× | 1× |
 
-The 65K comparison uses sixteen layers and twenty training passes. The 1M throughput result comes from a separate shallow forward benchmark and excludes vocabulary projection and training. Allocated memory is nearly unchanged in the reported comparisons. These results describe the tested configurations; structural reachability alone does not establish model quality.
+SBDA improves the tested book results but has substantially worse code accuracy. These fixed-budget runs do not establish convergence. The separate forward benchmark includes projections, FFNs and normalization, and excludes the vocabulary head, backward pass and optimizer. Peak allocated memory is nearly unchanged.
 
-Original records are available in [results/](BinaryDiffusionAttention/results/), including:
+Original records and protocols:
 
-- 65K training and validation: [SBDA JSON](BinaryDiffusionAttention/results/wikitext_65536_l16_sbda_20pass_dev.json), [SBDA log](BinaryDiffusionAttention/results/wikitext_65536_l16_sbda_20pass_dev.log), [dense JSON](BinaryDiffusionAttention/results/wikitext_65536_l16_causal_20pass_dev.json), [dense log](BinaryDiffusionAttention/results/wikitext_65536_l16_causal_20pass_dev.log).
-- Forward benchmark: [execution log](BinaryDiffusionAttention/results/sbda_vs_causal_4090_forward.log).
-- Earlier 1M pilot: [SBDA log](BinaryDiffusionAttention/results/wikitext_1m_sbda_3pass.log), [dense log](BinaryDiffusionAttention/results/wikitext_1m_causal_3pass.log). This pilot predates held-out validation in the current driver; its saved records are the authoritative account of that run.
+- Book accuracy: [protocol](BinaryDiffusionAttention/PG19_MINI_EXPERIMENT.md) and [three-seed results](BinaryDiffusionAttention/results/pg19_mini_32k_v1/SUMMARY.md).
+- Python accuracy: [protocol](BinaryDiffusionAttention/STACK_SMOL_EXPERIMENT.md) and [six saved runs](BinaryDiffusionAttention/results/stack_smol_python_32k_v1/).
+- Matched million-position forward benchmark: [records and scope](BinaryDiffusionAttention/results/gemm_l20_1m/README.md).
+- Kernel cost breakdown: [analysis](BinaryDiffusionAttention/GEMM_BREAKDOWN.md) and [JSON/log records](BinaryDiffusionAttention/results/gemm_breakdown_4090_v1/).
+- Historical WikiText experiments remain in [results/](BinaryDiffusionAttention/results/); the manuscript distinguishes them from the primary accuracy comparisons.
 
 ## Repository layout
 
@@ -98,7 +101,9 @@ The recorded verification ran 32 tests: 31 passed and one fused BF16 GPU test wa
 
 ## Reproduce the paper experiments
 
-[Appendix B](BinaryDiffusionAttention/paper_en.md#appendix-b-reproduction-commands) contains the recorded reproduction commands. For the 65K comparison, run each mode with the same settings and save new outputs separately:
+[Appendix B](BinaryDiffusionAttention/paper_en.md#appendix-b-reproduction-commands) contains the recorded reproduction commands. Prepare and run the primary book comparison with `pg19_mini_compare.py --prepare` and `run_pg19_mini_grid.py`. For the Python subset, use `stack_smol_compare.py --prepare /path/to/data/python/data.json`, then its `--smoke` check and training queue. These new dataset subsets must be prepared before training. See the linked protocols for selection and provenance.
+
+For the historical 65K comparison, run each mode with the same settings and save new outputs separately:
 
 ```bash
 for mode in causal sbda; do
@@ -134,7 +139,7 @@ Figure generation reads the saved results and updates `figures/`. PDF export rea
 
 ## Citation and archival
 
-[CITATION.cff](CITATION.cff) supplies GitHub citation metadata; [.zenodo.json](.zenodo.json) supplies the author, title and license for Zenodo archiving. The current release is `v0.1.1`; see its [release notes](docs/releases/v0.1.1.md). The first archival release was `v0.1.0`. The `v0.1.1` release is archived on [Zenodo](https://zenodo.org/records/23292158).
+[CITATION.cff](CITATION.cff) supplies GitHub citation metadata; [.zenodo.json](.zenodo.json) supplies the author, title and license for Zenodo archiving. The current release is `v0.1.2`; see its [release notes](docs/releases/v0.1.2.md). The DOI below identifies the archived `v0.1.1` release; the new version DOI will be assigned by Zenodo after publication. The first archival release was `v0.1.0`. The `v0.1.1` release is archived on [Zenodo](https://zenodo.org/records/23292158).
 
 - Version DOI (use to cite these exact artifacts): [10.5281/zenodo.23292158](https://doi.org/10.5281/zenodo.23292158).
 - All-versions DOI: [10.5281/zenodo.23292157](https://doi.org/10.5281/zenodo.23292157).
@@ -145,6 +150,6 @@ This DOI identifies the software release, which includes the English manuscript;
 
 ## Artifacts and license
 
-Paper data, result tables and the five recorded experiment logs are tracked in Git. Python caches, virtual environments, build artifacts, local editor files and temporary logs outside the experiment results directory are ignored. [IMPORT_MANIFEST.json](IMPORT_MANIFEST.json) records file sizes and SHA-256 checksums, including original checksums for modified imported files.
+Paper data, result tables and the recorded experiment logs are tracked in Git. Python caches, virtual environments, build artifacts, local editor files and temporary logs outside the experiment results directory are ignored. [IMPORT_MANIFEST.json](IMPORT_MANIFEST.json) records file sizes and SHA-256 checksums, including original checksums for modified imported files.
 
 Repository code is provided under the [MIT License](LICENSE). Included datasets retain their respective upstream terms.

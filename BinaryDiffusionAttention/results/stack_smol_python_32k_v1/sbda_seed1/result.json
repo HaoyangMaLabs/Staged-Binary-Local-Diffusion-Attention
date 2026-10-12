@@ -1,0 +1,301 @@
+{
+  "mode": "sbda",
+  "seed": 1,
+  "unit": "Unicode characters; train-only vocabulary with UNK=0",
+  "unknown_fraction": {
+    "train": 0.0,
+    "validation": 0.0001837468688722896,
+    "test": 0.00040892942988209795
+  },
+  "window": 32768,
+  "config": {
+    "dim": 64,
+    "layers": 15,
+    "ff_hidden": 128,
+    "vocab": 1192
+  },
+  "padding": "right power-of-two buckets, ignored CE targets",
+  "parameters": 693152,
+  "hardware": "NVIDIA GeForce RTX 4090, 24564 MiB, 610.43.03",
+  "windows": {
+    "train": 1383,
+    "validation": 147,
+    "test": 269
+  },
+  "records": [
+    {
+      "pass": 1,
+      "train_ce": 2.610837309205789,
+      "train_accuracy": 0.42432006257783994,
+      "train_tokens": 10886921,
+      "seconds": 125.54957105708309,
+      "dev": {
+        "ce": 1.9254079699731608,
+        "character_perplexity": 6.857945931277761,
+        "accuracy": 0.5232013764711712,
+        "tokens": 1110085
+      }
+    },
+    {
+      "pass": 2,
+      "train_ce": 1.8076651511173103,
+      "train_accuracy": 0.5449897174784313,
+      "train_tokens": 10886921,
+      "seconds": 119.80119552789256,
+      "dev": {
+        "ce": 1.6994906507524445,
+        "character_perplexity": 5.471159950692826,
+        "accuracy": 0.5608057040677066,
+        "tokens": 1110085
+      }
+    },
+    {
+      "pass": 3,
+      "train_ce": 1.6468157996242903,
+      "train_accuracy": 0.5736735850292292,
+      "train_tokens": 10886921,
+      "seconds": 103.25771705317311,
+      "dev": {
+        "ce": 1.607014349477206,
+        "character_perplexity": 4.9878968575035785,
+        "accuracy": 0.5769396037240392,
+        "tokens": 1110085
+      }
+    },
+    {
+      "pass": 4,
+      "train_ce": 1.5651593160004407,
+      "train_accuracy": 0.5896421035846591,
+      "train_tokens": 10886921,
+      "seconds": 118.21973848505877,
+      "dev": {
+        "ce": 1.5481700636960962,
+        "character_perplexity": 4.702856376021267,
+        "accuracy": 0.5896719620569596,
+        "tokens": 1110085
+      }
+    },
+    {
+      "pass": 5,
+      "train_ce": 1.511182398071459,
+      "train_accuracy": 0.6007870361142512,
+      "train_tokens": 10886921,
+      "seconds": 109.31236614705995,
+      "dev": {
+        "ce": 1.5202017354057356,
+        "character_perplexity": 4.573147667891594,
+        "accuracy": 0.5938770454514745,
+        "tokens": 1110085
+      }
+    },
+    {
+      "pass": 6,
+      "train_ce": 1.4690522238024037,
+      "train_accuracy": 0.6102009925487656,
+      "train_tokens": 10886921,
+      "seconds": 117.02150446502492,
+      "dev": {
+        "ce": 1.5030156120554896,
+        "character_perplexity": 4.495224504479212,
+        "accuracy": 0.5980596080480324,
+        "tokens": 1110085
+      }
+    },
+    {
+      "pass": 7,
+      "train_ce": 1.439164456379316,
+      "train_accuracy": 0.616373904063417,
+      "train_tokens": 10886921,
+      "seconds": 117.54184737592004,
+      "dev": {
+        "ce": 1.477351754876329,
+        "character_perplexity": 4.381327474659816,
+        "accuracy": 0.6028304138872248,
+        "tokens": 1110085
+      }
+    },
+    {
+      "pass": 8,
+      "train_ce": 1.4111229522794464,
+      "train_accuracy": 0.6223499738815043,
+      "train_tokens": 10886921,
+      "seconds": 101.45605380809866,
+      "dev": {
+        "ce": 1.4745003836574082,
+        "character_perplexity": 4.36885247747401,
+        "accuracy": 0.6035402694388268,
+        "tokens": 1110085
+      }
+    },
+    {
+      "pass": 9,
+      "train_ce": 1.3894951719218196,
+      "train_accuracy": 0.6270728886523563,
+      "train_tokens": 10886921,
+      "seconds": 117.17319713300094,
+      "dev": {
+        "ce": 1.4622080202737149,
+        "character_perplexity": 4.315477678548868,
+        "accuracy": 0.6053797682159474,
+        "tokens": 1110085
+      }
+    },
+    {
+      "pass": 10,
+      "train_ce": 1.367560374082894,
+      "train_accuracy": 0.6319914510264197,
+      "train_tokens": 10886921,
+      "seconds": 121.93596476782113,
+      "dev": {
+        "ce": 1.4454314736752898,
+        "character_perplexity": 4.243682785263144,
+        "accuracy": 0.6102983104897373,
+        "tokens": 1110085
+      }
+    },
+    {
+      "pass": 11,
+      "train_ce": 1.3520511511685567,
+      "train_accuracy": 0.6357797581152651,
+      "train_tokens": 10886921,
+      "seconds": 120.92049062089063,
+      "dev": {
+        "ce": 1.4374243041121817,
+        "character_perplexity": 4.209838576614119,
+        "accuracy": 0.612463910421274,
+        "tokens": 1110085
+      }
+    },
+    {
+      "pass": 12,
+      "train_ce": 1.3346323732834406,
+      "train_accuracy": 0.6396586325922637,
+      "train_tokens": 10886921,
+      "seconds": 120.76766572496854,
+      "dev": {
+        "ce": 1.4475540259207698,
+        "character_perplexity": 4.2526997898344545,
+        "accuracy": 0.6120053869748713,
+        "tokens": 1110085
+      }
+    },
+    {
+      "pass": 13,
+      "train_ce": 1.3212972782483376,
+      "train_accuracy": 0.6427847689902407,
+      "train_tokens": 10886921,
+      "seconds": 121.0203521780204,
+      "dev": {
+        "ce": 1.4292727260833327,
+        "character_perplexity": 4.175661237841648,
+        "accuracy": 0.6124657120851106,
+        "tokens": 1110085
+      }
+    },
+    {
+      "pass": 14,
+      "train_ce": 1.3090057345525257,
+      "train_accuracy": 0.645691284064613,
+      "train_tokens": 10886921,
+      "seconds": 120.66661988617852,
+      "dev": {
+        "ce": 1.428462345113652,
+        "character_perplexity": 4.172278732182888,
+        "accuracy": 0.6159149975001914,
+        "tokens": 1110085
+      }
+    },
+    {
+      "pass": 15,
+      "train_ce": 1.298284462681377,
+      "train_accuracy": 0.6479873418756322,
+      "train_tokens": 10886921,
+      "seconds": 121.29205554700457,
+      "dev": {
+        "ce": 1.4209996523632227,
+        "character_perplexity": 4.1412581902876555,
+        "accuracy": 0.6168068210992852,
+        "tokens": 1110085
+      }
+    },
+    {
+      "pass": 16,
+      "train_ce": 1.2848487674768745,
+      "train_accuracy": 0.6509563172176963,
+      "train_tokens": 10886921,
+      "seconds": 120.98933028802276,
+      "dev": {
+        "ce": 1.428342407225463,
+        "character_perplexity": 4.171778347890932,
+        "accuracy": 0.6165635964813505,
+        "tokens": 1110085
+      }
+    },
+    {
+      "pass": 17,
+      "train_ce": 1.2761668687218026,
+      "train_accuracy": 0.6530433168386176,
+      "train_tokens": 10886921,
+      "seconds": 122.23286063899286,
+      "dev": {
+        "ce": 1.419264936402685,
+        "character_perplexity": 4.13408051102559,
+        "accuracy": 0.6184598476693226,
+        "tokens": 1110085
+      }
+    },
+    {
+      "pass": 18,
+      "train_ce": 1.266945461142866,
+      "train_accuracy": 0.6550637227917793,
+      "train_tokens": 10886921,
+      "seconds": 97.60839961795136,
+      "dev": {
+        "ce": 1.4206730279686361,
+        "character_perplexity": 4.139905775216326,
+        "accuracy": 0.6198174013701654,
+        "tokens": 1110085
+      }
+    },
+    {
+      "pass": 19,
+      "train_ce": 1.256905130783943,
+      "train_accuracy": 0.6570755863848006,
+      "train_tokens": 10886921,
+      "seconds": 109.92167234397493,
+      "dev": {
+        "ce": 1.4268918739484173,
+        "character_perplexity": 4.165731431260006,
+        "accuracy": 0.6172437245796493,
+        "tokens": 1110085
+      }
+    },
+    {
+      "pass": 20,
+      "train_ce": 1.2491043502090675,
+      "train_accuracy": 0.6596455508403156,
+      "train_tokens": 10886921,
+      "seconds": 113.3470035570208,
+      "dev": {
+        "ce": 1.4157044355100301,
+        "character_perplexity": 4.119387286817099,
+        "accuracy": 0.6196453424737746,
+        "tokens": 1110085
+      }
+    }
+  ],
+  "best_pass": 20,
+  "test_at_best_dev": {
+    "ce": 1.426433198946762,
+    "character_perplexity": 4.163821152520919,
+    "accuracy": 0.6211979529554613,
+    "tokens": 1963416
+  },
+  "train_at_best_dev": {
+    "ce": 1.222374901856587,
+    "character_perplexity": 3.3952415317632094,
+    "accuracy": 0.6657182503666556,
+    "tokens": 10886921
+  },
+  "status": "complete"
+}
