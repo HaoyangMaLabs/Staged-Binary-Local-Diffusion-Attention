@@ -21,7 +21,7 @@
     {
       "path": ".zenodo.json",
       "bytes": 1094,
-      "sha256": "225fb5743320b71308a343baf6af7b64250f4845404b726ab81085fe404ff6f7",
+      "sha256": "ce28ac84cac32812c853e6ccabbce687271146c27973ca3f7e016581edffab97",
       "imported_sha256": "70fefac62a2bcaea56c042e95768c3b02d15d8e4eff042ca710617d403a56516"
     },
     {
@@ -266,8 +266,8 @@
     },
     {
       "path": "BinaryDiffusionAttention/figures/pdf_preview/page_01.png",
-      "bytes": 243832,
-      "sha256": "0c2099165e632faf295514d8009779256b9d312bc5bfa5a4de9414dbcaecd613",
+      "bytes": 245051,
+      "sha256": "84e4432d3e482d35ef9ac2a735335fd8e55f74cd009426602f8b2bb18044df8e",
       "imported_sha256": "d365efc708c1217ba4d20749b4edd21c440d09b4a044a83ad9cfa1830f122ddc"
     },
     {
@@ -343,8 +343,8 @@
     },
     {
       "path": "BinaryDiffusionAttention/paper_en.md",
-      "bytes": 43009,
-      "sha256": "30e135cc09897ca84c9fa2246a146e8db08320d62298ffe454d817d5aa72e0f6",
+      "bytes": 43027,
+      "sha256": "f7e5f1edfad1a52ef87f50de0ad2de869febbb9ce203c37bea7fdce6a4310f35",
       "imported_sha256": "e92f787f996b6755d6910b18f8af40697313a31c01676f71cfe768b7dc3ea94f"
     },
     {
@@ -988,7 +988,7 @@
     {
       "path": "CITATION.cff",
       "bytes": 759,
-      "sha256": "e069731195d3250a28b8920a510b418a16a186d6196cdeb8d6dde8e17d298e78",
+      "sha256": "1dec6d5a494532b021b8b9bc663894fb6936f190f863b87e886b9ce1c3230886",
       "imported_sha256": "e58042d1b1bbfbac9916a60ec8b5b954c2fdeb6ef3255e89412e8e44f741f5c8"
     },
     {
@@ -999,7 +999,7 @@
     {
       "path": "README.md",
       "bytes": 9588,
-      "sha256": "205718df28747b0eaa466115a6a52bdbbdc5c5141d72c1038c9faa709b51dd7e",
+      "sha256": "8d33feebaddabc6e2f035affe83e759a32b935381b325a61eaab0eddcffd2cb0",
       "imported_sha256": "6b424903192302572d30e46d86a47027c19bfda1ea7ce84bc3add8a119cee80f"
     },
     {
@@ -1018,15 +1018,20 @@
       "sha256": "8b5f9483404dcb5c5f67f27a7fe645fae9c379905e98706b1693998b2f7010f9"
     },
     {
+      "path": "docs/releases/v0.1.3.md",
+      "bytes": 531,
+      "sha256": "9c9630e7ce7a1892897505844ad74e6a37dcc90dbe0f1d2152d60aab4f948366"
+    },
+    {
       "path": "paper_en.pdf",
-      "bytes": 319240,
-      "sha256": "4c24c5aad4d0845a9374ffd6c65b447a678ec05686c50d02bc68239e8c76f2c9",
+      "bytes": 319493,
+      "sha256": "84364119a9d3ebae6cd3f2b65c2d5ebf169cd84c3b4eb1abb7a0b46377581e65",
       "imported_sha256": "1c3f939807f76f10ed8d2f70ef0a27dad3f3e825fde363453641bf4ed41d598a"
     },
     {
       "path": "pyproject.toml",
       "bytes": 409,
-      "sha256": "e05db7e98566d20f8e2e4c48ffb8c1c2cad0f639e123ab6eab8b5d1ce1c12f15",
+      "sha256": "6cb8b1b83c16e2a1ff82e1e299cef2ca10d5fcdda735d4b7e1b2ccfa40fe17f5",
       "imported_sha256": "e9d7a7ca2a0cea6847f9f615bbb91133ec80709837fd203676ce5fa0e9c52896"
     },
     {
@@ -1062,7 +1067,7 @@
     {
       "path": "uv.lock",
       "bytes": 37498,
-      "sha256": "30fd9dca176b9f95bf32799bc4e598f0804b783bcab0b1029860c1c00df315ba",
+      "sha256": "de09df40462589478f22977d4529e79f3a2f51b2e958f34f68c2daab0e2b8b7e",
       "imported_sha256": "2b2f12401cc591048f4d264cc22a511e4d4d4d95160ae297ab77049449b40455"
     }
   ],
@@ -1140,7 +1145,7 @@
     "graph_coverage": "108 rows byte-identical to original scanner; training and graph source statistics agree",
     "lockfile": "uv lock --check --offline passed",
     "paper_data_results_figures": "Updated English manuscript and experiment artifacts; all source results byte-identical after synchronization.",
-    "english_pdf": "Rebuilt current English manuscript: 13 pages; author and email retained; PDF in repository root.",
+    "english_pdf": "v0.1.3 English PDF rebuilt: 13 pages; explicit Author: HaoyangMa and email on title page; PDF author metadata verified.",
     "synced_results": {
       "files": 118,
       "logs": 28,

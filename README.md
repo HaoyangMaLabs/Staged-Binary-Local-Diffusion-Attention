@@ -139,7 +139,7 @@ Figure generation reads the saved results and updates `figures/`. PDF export rea
 
 ## Citation and archival
 
-[CITATION.cff](CITATION.cff) supplies GitHub citation metadata; [.zenodo.json](.zenodo.json) supplies the author, title and license for Zenodo archiving. The current release is `v0.1.2`; see its [release notes](docs/releases/v0.1.2.md). The DOI below identifies the archived `v0.1.1` release; the new version DOI will be assigned by Zenodo after publication. The first archival release was `v0.1.0`. The `v0.1.1` release is archived on [Zenodo](https://zenodo.org/records/23292158).
+[CITATION.cff](CITATION.cff) supplies GitHub citation metadata; [.zenodo.json](.zenodo.json) supplies the author, title and license for Zenodo archiving. The current release is `v0.1.3`; see its [release notes](docs/releases/v0.1.3.md). The DOI below identifies the archived `v0.1.1` release; the new version DOI will be assigned by Zenodo after publication. The first archival release was `v0.1.0`. The `v0.1.1` release is archived on [Zenodo](https://zenodo.org/records/23292158).
 
 - Version DOI (use to cite these exact artifacts): [10.5281/zenodo.23292158](https://doi.org/10.5281/zenodo.23292158).
 - All-versions DOI: [10.5281/zenodo.23292157](https://doi.org/10.5281/zenodo.23292157).

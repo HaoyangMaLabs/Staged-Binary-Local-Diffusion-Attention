@@ -1,7 +1,8 @@
 # Staged Binary-Local Diffusion Attention: Effective Few-Step Diffusion Along the Time Axis
 
-HaoyangMa  
-haoyang@haoyangma.com
+Author: **HaoyangMa**
+
+Email: haoyang@haoyangma.com
 
 Research manuscript · October 2026
 
